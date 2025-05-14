@@ -1,36 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/14 19:17:11 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/05/14 19:21:51 by mabaghda         ###   ########.fr       */
+/*   Created: 2025/01/27 13:33:33 by mabaghda          #+#    #+#             */
+/*   Updated: 2025/02/03 15:37:35 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "libft.h"
 
-# include "mlx.h"
-
-typedef struct s_game
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	char	**map;
-	int		width;
-	int		height;
-	int		player_x;
-	int		player_y;
-	int		collectibles;
-	int		moves;
-	void	*mlx;
-	void	*win;
-	void	*img_wall;
-	void	*img_floor;
-	void	*img_player;
-	void	*img_collect;
-	void	*img_exit;
-}			t_game;
+	size_t	src_len;
 
-#endif
+	src_len = ft_strlen(src);
+	if (dstsize == 0)
+		return (src_len);
+	if (src_len + 1 < dstsize)
+		ft_memcpy(dst, src, src_len + 1);
+	else
+	{
+		ft_memcpy(dst, src, dstsize - 1);
+		dst[dstsize - 1] = '\0';
+	}
+	return (src_len);
+}

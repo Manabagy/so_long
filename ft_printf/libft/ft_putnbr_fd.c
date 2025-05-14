@@ -1,36 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/14 19:17:11 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/05/14 19:21:51 by mabaghda         ###   ########.fr       */
+/*   Created: 2025/01/27 13:32:09 by mabaghda          #+#    #+#             */
+/*   Updated: 2025/02/03 15:03:03 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "libft.h"
 
-# include "mlx.h"
-
-typedef struct s_game
+void	ft_putnbr_fd(int nb, int fd)
 {
-	char	**map;
-	int		width;
-	int		height;
-	int		player_x;
-	int		player_y;
-	int		collectibles;
-	int		moves;
-	void	*mlx;
-	void	*win;
-	void	*img_wall;
-	void	*img_floor;
-	void	*img_player;
-	void	*img_collect;
-	void	*img_exit;
-}			t_game;
-
-#endif
+	if (nb == -2147483648)
+	{
+		write (fd, "-2147483648", 11);
+		return ;
+	}
+	if (nb == 0)
+	{
+		ft_putchar_fd('0', fd);
+		return ;
+	}
+	if (nb < 0)
+	{
+		ft_putchar_fd('-', fd);
+		nb = -nb;
+	}
+	if (nb > 9)
+	{
+		ft_putnbr_fd(nb / 10, fd);
+	}
+	ft_putchar_fd((nb % 10) + '0', fd);
+}
+/*int	main()
+{
+	ft_putnbr_fd(-2147483648, 1);
+	write(1, "\n", 1);
+}*/

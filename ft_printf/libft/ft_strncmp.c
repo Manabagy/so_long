@@ -1,36 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/14 19:17:11 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/05/14 19:21:51 by mabaghda         ###   ########.fr       */
+/*   Created: 2025/01/27 13:33:55 by mabaghda          #+#    #+#             */
+/*   Updated: 2025/02/03 11:45:52 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "libft.h"
 
-# include "mlx.h"
-
-typedef struct s_game
+int	ft_strncmp(const char *s1, const char *s2, unsigned int n)
 {
-	char	**map;
-	int		width;
-	int		height;
-	int		player_x;
-	int		player_y;
-	int		collectibles;
-	int		moves;
-	void	*mlx;
-	void	*win;
-	void	*img_wall;
-	void	*img_floor;
-	void	*img_player;
-	void	*img_collect;
-	void	*img_exit;
-}			t_game;
+	unsigned int	a;
 
-#endif
+	a = 0;
+	while ((s1[a] != '\0' || s2[a] != '\0') && (a < n))
+	{
+		if (s1[a] != s2[a])
+		{
+			return ((unsigned char)s1[a] - (unsigned char)s2[a]);
+		}
+		a++;
+	}
+	return (0);
+}

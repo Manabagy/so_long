@@ -1,36 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/14 19:17:11 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/05/14 19:21:51 by mabaghda         ###   ########.fr       */
+/*   Created: 2025/01/27 12:32:44 by mabaghda          #+#    #+#             */
+/*   Updated: 2025/01/27 12:32:46 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "libft.h"
 
-# include "mlx.h"
-
-typedef struct s_game
+void	ft_lstadd_front(t_list **alst, t_list *new)
 {
-	char	**map;
-	int		width;
-	int		height;
-	int		player_x;
-	int		player_y;
-	int		collectibles;
-	int		moves;
-	void	*mlx;
-	void	*win;
-	void	*img_wall;
-	void	*img_floor;
-	void	*img_player;
-	void	*img_collect;
-	void	*img_exit;
-}			t_game;
-
-#endif
+	new->next = *alst;
+	*alst = new;
+}

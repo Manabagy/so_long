@@ -1,36 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/14 19:17:11 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/05/14 19:21:51 by mabaghda         ###   ########.fr       */
+/*   Created: 2025/01/17 13:40:35 by mabaghda          #+#    #+#             */
+/*   Updated: 2025/01/27 18:29:23 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
-
-# include "mlx.h"
-
-typedef struct s_game
+int	ft_isascii(int a)
 {
-	char	**map;
-	int		width;
-	int		height;
-	int		player_x;
-	int		player_y;
-	int		collectibles;
-	int		moves;
-	void	*mlx;
-	void	*win;
-	void	*img_wall;
-	void	*img_floor;
-	void	*img_player;
-	void	*img_collect;
-	void	*img_exit;
-}			t_game;
+	if ((a >= 0 && a <= 127))
+		return (1);
+	else
+		return (0);
+}
 
-#endif
+/*#include <ctype.h>
+#include <stdio.h>
+int	main(void)
+{
+	char	b = '0';
+	printf("%d\n", ft_isascii(b));
+	printf("%d\n", isascii(b));
+}*/

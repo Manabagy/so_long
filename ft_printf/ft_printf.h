@@ -1,36 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/14 19:17:11 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/05/14 19:21:51 by mabaghda         ###   ########.fr       */
+/*   Created: 2025/02/09 12:18:57 by mabaghda          #+#    #+#             */
+/*   Updated: 2025/02/17 17:21:24 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
-# include "mlx.h"
+# include "libft/libft.h"
+# include <stdarg.h>
+# include <stdlib.h>
+# include <unistd.h>
 
-typedef struct s_game
-{
-	char	**map;
-	int		width;
-	int		height;
-	int		player_x;
-	int		player_y;
-	int		collectibles;
-	int		moves;
-	void	*mlx;
-	void	*win;
-	void	*img_wall;
-	void	*img_floor;
-	void	*img_player;
-	void	*img_collect;
-	void	*img_exit;
-}			t_game;
+size_t	len_putchar(char c);
+size_t	len_putstr(char *str);
+size_t	len_putnbr(int nbr);
+size_t	len_putunbr(unsigned int nbr);
+size_t	len_puthex(unsigned long long n, int uppercase);
+size_t	len_putptr(unsigned long long n);
+int		ft_printf(const char *format, ...);
 
 #endif

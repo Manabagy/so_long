@@ -1,36 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/14 19:17:11 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/05/14 19:21:51 by mabaghda         ###   ########.fr       */
+/*   Created: 2025/01/21 12:43:39 by mabaghda          #+#    #+#             */
+/*   Updated: 2025/01/21 13:31:07 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "libft.h"
 
-# include "mlx.h"
-
-typedef struct s_game
+void	*ft_memset(void *b, int c, size_t len)
 {
-	char	**map;
-	int		width;
-	int		height;
-	int		player_x;
-	int		player_y;
-	int		collectibles;
-	int		moves;
-	void	*mlx;
-	void	*win;
-	void	*img_wall;
-	void	*img_floor;
-	void	*img_player;
-	void	*img_collect;
-	void	*img_exit;
-}			t_game;
+	unsigned char	*tmpr;
 
-#endif
+	tmpr = (unsigned char *)b;
+	while (len > 0)
+	{
+		*tmpr = (unsigned char)c;
+		tmpr++;
+		len--;
+	}
+	return (b);
+}
+/*#include <stdio.h>
+int main()
+{
+    char buffer[5];
+    ft_memset(buffer, 'n', 3);
+
+    size_t i = 0;
+    while (i < 5)
+    {
+        printf("%c", buffer[i]);
+        i++;
+    }
+
+    return 0;
+}*/

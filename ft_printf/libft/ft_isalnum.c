@@ -1,36 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/14 19:17:11 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/05/14 19:21:51 by mabaghda         ###   ########.fr       */
+/*   Created: 2025/01/17 13:31:50 by mabaghda          #+#    #+#             */
+/*   Updated: 2025/01/27 15:12:27 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#ifndef SO_LONG_H
-# define SO_LONG_H
-
-# include "mlx.h"
-
-typedef struct s_game
+#include "libft.h"
+/*int	ft_isalnum(char a)
 {
-	char	**map;
-	int		width;
-	int		height;
-	int		player_x;
-	int		player_y;
-	int		collectibles;
-	int		moves;
-	void	*mlx;
-	void	*win;
-	void	*img_wall;
-	void	*img_floor;
-	void	*img_player;
-	void	*img_collect;
-	void	*img_exit;
-}			t_game;
+	return ((a >= 'a' && a <= 'z') || (a >= 'A' && a <= 'Z')
+		|| (a >= '0' && a <= '9'));
+}*/
 
-#endif
+int	ft_isalnum(char a)
+{
+	return (ft_isdigit(a) || ft_isalpha(a));
+}
+
+/*#include <ctype.h>
+#include <stdio.h>
+int	main(void)
+{
+	char b = '-';
+	printf("%d\n", ft_isalnum(b));
+	printf("%d\n", isalnum(b));
+}*/
