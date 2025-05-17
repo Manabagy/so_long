@@ -6,11 +6,11 @@
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 13:03:20 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/05/17 14:26:03 by mabaghda         ###   ########.fr       */
+/*   Updated: 2025/05/17 18:36:55 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "gnl.h"
+#include "../include/gnl.h"
 
 static char	*read_line(int fd, char *already_read, char *buf)
 {
@@ -25,10 +25,10 @@ static char	*read_line(int fd, char *already_read, char *buf)
 		else if (bytes == 0)
 			break ;
 		buf[bytes] = '\0';
-		already_read = ft_strjoin(already_read, buf);
+		already_read = gnl_strjoin(already_read, buf);
 		if (!already_read)
 			return (NULL);
-		if (ft_strchr(already_read, '\n'))
+		if (gnl_strchr(already_read, '\n'))
 			break ;
 	}
 	return (already_read);
@@ -44,7 +44,7 @@ static char	*check_line(char *final_line)
 		a++;
 	if (final_line[a] == '\0' || final_line[a + 1] == '\0')
 		return (NULL);
-	cut = ft_substr(final_line, a + 1, ft_strlen(final_line) - a);
+	cut = gnl_substr(final_line, a + 1, gnl_strlen(final_line) - a);
 	if (!cut)
 		return (NULL);
 	final_line[a + 1] = '\0';

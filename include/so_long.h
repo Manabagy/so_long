@@ -1,29 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gnl.h                                              :+:      :+:    :+:   */
+/*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/26 13:03:31 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/05/17 14:26:22 by mabaghda         ###   ########.fr       */
+/*   Created: 2025/05/14 19:17:11 by mabaghda          #+#    #+#             */
+/*   Updated: 2025/05/17 19:15:07 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GNL_H
-# define GNL_H
+#ifndef SO_LONG_H
+# define SO_LONG_H
 
-# include <stdlib.h>
-# include <unistd.h>
+# include "gnl.h"
+# include "../minilibx-linux/mlx.h"
+# include "../ft_printf/ft_printf.h"
+# include <fcntl.h>
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 10
-# endif
+typedef struct s_game
+{
+	char	**map;
+	int		width;
+	int		height;
+	int		player_x;
+	int		player_y;
 
-char	*get_next_line(int fd);
-size_t	ft_strlen(const char *str);
-int		ft_strchr(const char *s, int c);
-char	*ft_strjoin(char *s1, char *s2);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
+}			t_game;
+
+typedef struct s_comp
+{
+	int count;
+	char type;
+	struct s_comp *next;
+}	t_comp;
+
+int			isvalid_map(char *filename);
 
 #endif

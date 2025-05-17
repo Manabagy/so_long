@@ -1,31 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/14 19:17:11 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/05/17 15:45:38 by mabaghda         ###   ########.fr       */
+/*   Created: 2025/05/14 19:19:28 by mabaghda          #+#    #+#             */
+/*   Updated: 2025/05/17 18:04:37 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "../include/so_long.h"
 
-# include "gnl/gnl.h"
-# include "minilibx-linux/mlx.h"
-
-typedef struct s_game
+int	main(int argc, char **argv)
 {
-	char	**map;
-	int		width;
-	int		height;
-	int		player_x;
-	int		player_y;
+	if (argc != 2)
+	{
+		return (0);
+	}
+	isvalid_map(argv[1]);
 
-}			t_game;
-
-int			isvalid_file(char *filename);
-
-#endif
+	return (0);
+}

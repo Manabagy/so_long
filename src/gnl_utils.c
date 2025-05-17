@@ -6,13 +6,13 @@
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 13:03:40 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/05/17 14:25:55 by mabaghda         ###   ########.fr       */
+/*   Updated: 2025/05/17 18:38:07 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "gnl.h"
+#include "../include/gnl.h"
 
-size_t	ft_strlen(const char *str)
+size_t	gnl_strlen(const char *str)
 {
 	int	a;
 
@@ -24,7 +24,7 @@ size_t	ft_strlen(const char *str)
 	return (a);
 }
 
-int	ft_strchr(const char *s, int c)
+int	gnl_strchr(const char *s, int c)
 {
 	unsigned int	i;
 
@@ -38,7 +38,7 @@ int	ft_strchr(const char *s, int c)
 	return (0);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*gnl_strjoin(char *s1, char *s2)
 {
 	char	*result;
 	size_t	m;
@@ -46,7 +46,7 @@ char	*ft_strjoin(char *s1, char *s2)
 
 	if (!s1 && !s2)
 		return (NULL);
-	result = (char *)malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
+	result = (char *)malloc((gnl_strlen(s1) + gnl_strlen(s2) + 1) * sizeof(char));
 	if (!result)
 		return (NULL);
 	m = 0;
@@ -64,14 +64,14 @@ char	*ft_strjoin(char *s1, char *s2)
 	return (result);
 }
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*gnl_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*substr;
 	size_t	i;
 
 	if (!s)
 		return (NULL);
-	if (start >= ft_strlen(s))
+	if (start >= gnl_strlen(s))
 	{
 		substr = (char *)malloc(1);
 		if (!substr)
@@ -79,8 +79,8 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		substr[0] = '\0';
 		return (substr);
 	}
-	if (len > ft_strlen(s) - start)
-		len = ft_strlen(s) - start;
+	if (len > gnl_strlen(s) - start)
+		len = gnl_strlen(s) - start;
 	substr = (char *)malloc(sizeof(char) * (len + 1));
 	if (!substr)
 		return (NULL);
