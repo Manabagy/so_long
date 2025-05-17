@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   gnl.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/14 19:17:11 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/05/17 15:45:38 by mabaghda         ###   ########.fr       */
+/*   Created: 2025/02/26 13:03:31 by mabaghda          #+#    #+#             */
+/*   Updated: 2025/05/17 14:26:22 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#ifndef GNL_H
+# define GNL_H
 
-# include "gnl/gnl.h"
-# include "minilibx-linux/mlx.h"
+# include <stdlib.h>
+# include <unistd.h>
 
-typedef struct s_game
-{
-	char	**map;
-	int		width;
-	int		height;
-	int		player_x;
-	int		player_y;
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 10
+# endif
 
-}			t_game;
-
-int			isvalid_file(char *filename);
+char	*get_next_line(int fd);
+size_t	ft_strlen(const char *str);
+int		ft_strchr(const char *s, int c);
+char	*ft_strjoin(char *s1, char *s2);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
 
 #endif

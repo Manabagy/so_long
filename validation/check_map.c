@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/26 13:03:31 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/03/04 13:16:49 by mabaghda         ###   ########.fr       */
+/*   Created: 2025/05/17 15:10:06 by mabaghda          #+#    #+#             */
+/*   Updated: 2025/05/17 16:11:18 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "../so_long.h"
 
-# include <stdlib.h>
-# include <unistd.h>
+int	isvalid_file(char *filename)
+{
+	int	fd;
+	char *line;
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 10
-# endif
-
-char	*get_next_line(int fd);
-size_t	ft_strlen(const char *str);
-int		ft_strchr(const char *s, int c);
-char	*ft_strjoin(char *s1, char *s2);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
-
-#endif
+	fd = open(filename, O_RDONLY);
+	if (fd == -1)
+		return (0);
+	while ()
+	line = get_next_line(fd);
+}

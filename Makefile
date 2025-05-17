@@ -6,7 +6,7 @@ MLX = -lmlx -lXext -lX11 -lm
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
-SRC = main.c
+SRC = main.c validation/check_map.c
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
@@ -15,7 +15,7 @@ all: $(NAME)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(SRC) -o $(NAME) $(MLX)
+	$(CC) $(CFLAGS) $(SRC) -o $(NAME) $(PRINTF) $(MLX)
 
 $(PRINTF): $(PRINTF_DIR)
 	make -C $(PRINTF_DIR)

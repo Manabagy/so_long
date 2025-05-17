@@ -6,19 +6,19 @@
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 19:19:28 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/05/17 12:22:42 by mabaghda         ###   ########.fr       */
+/*   Updated: 2025/05/17 16:02:44 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	main(void)
+int	main(int argc, char **argv)
 {
-	void *mlx;
-	void *win;
+	if (argc != 2)
+	{
+		return (0);
+	}
+	isvalid_file(argv[1]);
 
-	mlx = mlx_init();
-	win = mlx_new_window(mlx, width, height, "so_long");
-	
 	return (0);
 }
