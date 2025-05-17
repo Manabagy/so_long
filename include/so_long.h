@@ -17,6 +17,7 @@
 # include "../minilibx-linux/mlx.h"
 # include "../ft_printf/ft_printf.h"
 # include <fcntl.h>
+# include <stdlib.h>
 
 typedef struct s_game
 {

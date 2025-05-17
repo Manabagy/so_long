@@ -12,25 +12,52 @@
 
 #include "../include/so_long.h"
 
-int	check_line(char *line, int count)
+int check_wall(char *line)
+{ 
+    if (line[0] != '1' || line[ft_strlen(line) - 1] != '1')
+        return (0);
+    
+    return (1);
+}
+
+void count_components(char *line, t_comp *comp_list)
 {
-	check_wall(line);
+    int i = 0;
+	t_comp current;
+    
+    while (line[i])
+    {
+        if (line[i] == 'P')
+		{
+            comp_list->player_count++;
+		}
+        
+        i++;
+    }
+}
+
+
+int	check_line(char *line, t_game data, t_comp comp_list)
+{
 	count_components(line);
-	;	
 }
 
 int	isvalid_map(char *filename)
 {
 	int fd;
 	char *line;
+	t_comp comp_list;
+	t_game data;
 
+	comp_list = NULL;
+	data = NULL;
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 		return (0);
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
-		if (!check_line(line, t_comp))
+		if (!check_line(line, data, comp_list))
 		{
 			ft_printf("Error");
 			return (0);
