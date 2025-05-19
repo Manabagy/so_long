@@ -15,13 +15,13 @@ all: $(NAME)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME): $(OBJ) $(PRINTF)
-	@ $(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(PRINTF)
+	$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(PRINTF)
 
-$(PRINTF): $(PRINTF_DIR)
-	@ make -sC $(PRINTF_DIR)
+$(PRINTF):
+	make -C $(PRINTF_DIR)
 
 clean:
-	@ make -sC $(PRINTF_DIR) clean
+	make -C $(PRINTF_DIR) clean
 	rm -f $(OBJ)
 
 

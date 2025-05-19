@@ -6,7 +6,7 @@
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 13:03:40 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/05/17 18:38:07 by mabaghda         ###   ########.fr       */
+/*   Updated: 2025/05/19 18:19:06 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ char	*gnl_strjoin(char *s1, char *s2)
 
 	if (!s1 && !s2)
 		return (NULL);
-	result = (char *)malloc((gnl_strlen(s1) + gnl_strlen(s2) + 1) * sizeof(char));
+	result = (char *)malloc((gnl_strlen(s1)
+				+ gnl_strlen(s2) + 1) * sizeof(char));
 	if (!result)
 		return (NULL);
 	m = 0;
