@@ -1,34 +1,47 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/19 17:23:58 by mabaghda          #+#    #+#             */
+/*   Updated: 2025/05/19 18:09:36 by mabaghda         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/so_long.h"
 
-t_comp  *new_component(char type)
+int	check_comp_count(t_comp *comp_list)
 {
-    t_comp  *new;
-
-    new = malloc(sizeof(t_comp));
-    if (!new)
-        return (NULL);
-    new->type = type;
-    new->count = 0;
-    new->next = NULL;
-    return (new);
+	if (comp_list->player_count != 1)
+		return (0);
+	else if (comp_list->exit_count != 1)
+		return (0);
+	return (1);
 }
 
-void add_component(t_comp **list, char type)
+int	width_height_count(int fd, t_game *data)
 {
-    t_comp *tmp = *list;
+	char	*line;
+	int		line_count;
+	int		i;
 
-    while (tmp)
-    {
-        if (tmp->type == type)
-        {
-            tmp->count++;
-            return;
-        }
-        tmp = tmp->next;
-    }
-    t_comp *new = new_component(type);
-    if (!new)
-        return;
-    new->next = *list;
-    *list = new;
+	i = 0;
+	line_count = 1;
+	data->width = ft_strlen(line = get_next_line(fd));
+	while ((line = get_next_line(fd)))
+	{
+		line = get_next_line(fd);
+		line_count++;
+		if (ft_strlen(line) != data->width || line[0] == '\n')
+			return (0);
+	}
+	data->height = line_count;
+	while (line[i] && line[i] != '\n')
+	{
+		if (line[i] != 1)
+			return (0);
+	}
+	return (1);
 }
