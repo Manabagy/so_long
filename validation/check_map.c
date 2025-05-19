@@ -6,7 +6,7 @@
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 15:10:06 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/05/19 20:56:59 by mabaghda         ###   ########.fr       */
+/*   Updated: 2025/05/19 22:23:51 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,15 @@ int	check_line(char *line, t_comp *comp_list)
 	return (1);
 }
 
+void	width(char *line, t_game *data)
+{
+	if (!line)
+		return ;
+	if (line[ft_strlen(line) - 1] == '\n')
+		line[ft_strlen(line) - 1] = '\0';
+	data->width = ft_strlen(line);
+}
+
 int	isvalid_map(char *filename)
 {
 	int		fd;
@@ -52,23 +61,23 @@ int	isvalid_map(char *filename)
 	t_comp	comp_list;
 	t_game	data;
 
-	comp_list.player_count = 0;
-	comp_list.exit_count = 0;
-	comp_list.coll_count = 0;
+	data.height = 0;
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 		return (0);
 	line = get_next_line(fd);
+	width(line, &data);
 	while (line != NULL)
 	{
+		data.height++;
 		if (line[ft_strlen(line) - 1] == '\n')
 			line[ft_strlen(line) - 1] = '\0';
-		if (!check_line(line, &comp_list))
+		if (data.width != ft_strlen(line) || (!check_line(line, &comp_list)))
 			return (0);
 		line = get_next_line(fd);
 	}
 	close(fd);
-	if (!width_height_count(filename, &data) || !check_comp_count(&comp_list))
+	if (!first_and_last_wall(filename) || !check_comp_count(&comp_list))
 		return (0);
 	return (1);
 }

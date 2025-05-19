@@ -6,7 +6,7 @@
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 19:17:11 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/05/19 18:45:35 by mabaghda         ###   ########.fr       */
+/*   Updated: 2025/05/19 22:24:08 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ int			check_line(char *line, t_comp *comp_list);
 void		count_components(char *line, t_comp *comp_list);
 int			check_wall(char *line);
 int			check_comp_count(t_comp *comp_list);
-int			width_height_count(char *filenme, t_game *data);
+int			first_and_last_wall(char *filename);
+int			firstnlast(char *line);
+void		width(char *line, t_game *data);
 
 #endif
