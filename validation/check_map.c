@@ -6,7 +6,7 @@
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 15:10:06 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/05/19 19:03:03 by mabaghda         ###   ########.fr       */
+/*   Updated: 2025/05/19 20:56:59 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,6 @@ int	isvalid_map(char *filename)
 	if (fd == -1)
 		return (0);
 	line = get_next_line(fd);
-	if (!line)
-		return (0);
 	while (line != NULL)
 	{
 		if (line[ft_strlen(line) - 1] == '\n')
@@ -69,9 +67,8 @@ int	isvalid_map(char *filename)
 			return (0);
 		line = get_next_line(fd);
 	}
-	check_comp_count(&comp_list);
 	close(fd);
-	if (!width_height_count(filename, &data))
+	if (!width_height_count(filename, &data) || !check_comp_count(&comp_list))
 		return (0);
 	return (1);
 }
