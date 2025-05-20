@@ -6,7 +6,7 @@
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 19:17:11 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/05/19 22:24:08 by mabaghda         ###   ########.fr       */
+/*   Updated: 2025/05/20 15:58:06 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int			check_wall(char *line);
 int			check_comp_count(t_comp *comp_list);
 int			first_and_last_wall(char *filename);
 int			firstnlast(char *line);
-void		width(char *line, t_game *data);
+int			width(char *line);
+int			valid_characters(char *line);
 
 #endif

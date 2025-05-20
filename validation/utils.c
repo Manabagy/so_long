@@ -6,11 +6,26 @@
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 17:23:58 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/05/19 22:29:11 by mabaghda         ###   ########.fr       */
+/*   Updated: 2025/05/20 15:58:56 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
+
+int	valid_characters(char *line)
+{
+	int	i;
+
+	i = 0;
+	while (line[i])
+	{
+		if (line[i] != '1' && line[i] != '0' && line[i] != 'P' && line[i] != 'C'
+			&& line[i] != 'E')
+			return (0);
+		i++;
+	}
+	return (1);
+}
 
 int	firstnlast(char *line)
 {
@@ -46,9 +61,11 @@ int	first_and_last_wall(char *filename)
 	first_line = line;
 	while (line != NULL)
 	{
+		last_line = line;
 		if (line[ft_strlen(line) - 1] == '\n')
 			line[ft_strlen(line) - 1] = '\0';
-		last_line = line;
+		if (!valid_characters(line))
+			return (0);
 		line = get_next_line(fd);
 	}
 	if (!firstnlast(first_line) || !firstnlast(last_line))
