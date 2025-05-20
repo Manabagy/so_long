@@ -6,7 +6,7 @@
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 19:17:11 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/05/20 15:58:06 by mabaghda         ###   ########.fr       */
+/*   Updated: 2025/05/20 16:13:21 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define SO_LONG_H
 
 # include "../ft_printf/ft_printf.h"
-// # include "../minilibx-linux/mlx.h"
+# include "../minilibx-linux/mlx.h"
 # include "gnl.h"
 # include <fcntl.h>
 # include <stdlib.h>
