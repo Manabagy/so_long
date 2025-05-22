@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   check_map_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 17:23:58 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/05/20 15:58:56 by mabaghda         ###   ########.fr       */
+/*   Updated: 2025/05/22 20:42:51 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	valid_characters(char *line)
 	int	i;
 
 	i = 0;
-	while (line[i])
+	while (line[i] && line[i] != '\n')
 	{
 		if (line[i] != '1' && line[i] != '0' && line[i] != 'P' && line[i] != 'C'
 			&& line[i] != 'E')
@@ -41,34 +41,12 @@ int	firstnlast(char *line)
 	return (1);
 }
 
-int	check_comp_count(t_comp *comp_list)
+int	check_wall(char *line)
 {
-	if (comp_list->player_count != 1 || comp_list->exit_count != 1
-		|| comp_list->coll_count == 0)
+	if (line[ft_strlen(line) - 1] == '\n')
+		line[ft_strlen(line) - 1] = '\0';
+	if (line[0] != '1' || line[ft_strlen(line) - 1] != '1')
 		return (0);
-	return (1);
-}
-
-int	first_and_last_wall(char *filename)
-{
-	char	*line;
-	char	*first_line;
-	char	*last_line;
-	int		fd;
-
-	fd = open(filename, O_RDONLY);
-	line = get_next_line(fd);
-	first_line = line;
-	while (line != NULL)
-	{
-		last_line = line;
-		if (line[ft_strlen(line) - 1] == '\n')
-			line[ft_strlen(line) - 1] = '\0';
-		if (!valid_characters(line))
-			return (0);
-		line = get_next_line(fd);
-	}
-	if (!firstnlast(first_line) || !firstnlast(last_line))
-		return (0);
-	return (1);
+	else
+		return (1);
 }

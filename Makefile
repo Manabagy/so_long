@@ -1,12 +1,12 @@
 NAME = so_long
 PRINTF_DIR = ./ft_printf
 PRINTF = $(PRINTF_DIR)/libftprintf.a
-MLX = -lmlx -lXext -lX11 -lm
+# MLX = -lmlx -lXext -lX11 -lm
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
-SRC = src/main.c src/gnl.c src/gnl_utils.c validation/check_map.c validation/utils.c
+SRC = src/main.c src/gnl.c src/gnl_utils.c validation/check_map.c validation/check_map_utils.c validation/helper_functions.c
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)

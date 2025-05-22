@@ -6,7 +6,7 @@
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 19:19:28 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/05/19 19:13:27 by mabaghda         ###   ########.fr       */
+/*   Updated: 2025/05/22 19:05:14 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	main(int argc, char **argv)
 	{
 		return (0);
 	}
-	if (!isvalid_map(argv[1]))
+	if (!check_map(argv[1]))
 	{
 		ft_printf("Invalid map\n");
 		return (1);
