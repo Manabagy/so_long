@@ -6,7 +6,7 @@
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 15:10:06 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/05/22 21:01:49 by mabaghda         ###   ########.fr       */
+/*   Updated: 2025/05/22 21:15:03 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,8 @@ int	check_map(char *filename)
 	int	len;
 
 	len = ft_strlen(filename);
-	if (!(filename[len - 1] == 'r' && filename[len - 2] == 'e' && filename[len
-			- 3] == 'b' && filename[len - 4] == '.'))
+	if (!(filename[len - 1] == 'r' && filename[len - 2] == 'e'
+			&& filename[len - 3] == 'b' && filename[len - 4] == '.'))
 		return (0);
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
