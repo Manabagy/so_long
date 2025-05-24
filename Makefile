@@ -6,7 +6,7 @@ PRINTF = $(PRINTF_DIR)/libftprintf.a
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
-SRC = src/main.c src/gnl.c src/gnl_utils.c validation/check_map.c validation/check_map_utils.c validation/helper_functions.c
+SRC = src/main.c src/gnl.c src/gnl_utils.c src/validation/check_map.c src/validation/check_map_utils.c src/validation/helper_functions.c
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)

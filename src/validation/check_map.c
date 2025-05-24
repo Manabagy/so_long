@@ -6,11 +6,11 @@
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 15:10:06 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/05/22 21:15:03 by mabaghda         ###   ########.fr       */
+/*   Updated: 2025/05/24 13:50:13 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
+#include "../../include/so_long.h"
 
 int	first_and_last_wall(int fd)
 {
@@ -41,46 +41,99 @@ int	first_and_last_wall(int fd)
 	return (1);
 }
 
-int	isvalid_map(int fd)
+int	isvalid_map(int fd, t_comp *comp_list, t_game *data)
 {
 	char	*line;
-	t_comp	comp_list;
-	t_game	data;
 
-	data.height = 0;
-	comp_list.player_count = 0;
-	comp_list.exit_count = 0;
-	comp_list.coll_count = 0;
 	line = get_next_line(fd);
 	if (!line)
 		return (0);
-	data.width = width(line);
+	data->width = width(line);
 	while (line != NULL)
 	{
-		data.height++;
-		if (data.width != width(line) || (!check_line(line, &comp_list)))
+		data->height++;
+		if (data->width != width(line) || (!check_line(line, comp_list)))
 			return (free(line), 0);
 		free(line);
 		line = get_next_line(fd);
 	}
-	if (!check_comp_count(&comp_list))
-		return (0);
+	free(line);
+	if (!check_comp_count(comp_list))
+		return (free(line), 0);
+	close(fd);
 	return (1);
 }
 
-int	check_map(char *filename)
+void	*free_array(char **array)
+{
+	int	i;
+
+	i = 0;
+	while (array[i])
+	{
+		free(array[i]);
+		i++;
+	}
+	free(array);
+	return (NULL);
+}
+
+int	fill_map(char *line, t_game *data, int times)
+{
+	if (line[ft_strlen(line) - 1] == '\n')
+		line[ft_strlen(line) - 1] = '\0';
+	data->map = (char **)malloc(sizeof(char *) * data->height);
+	if (!data->map)
+		return (0);
+	data->map[times] = ft_strdup(line);
+	if (!data->map[times])
+	{
+		free_array(data->map);
+		return (0);
+	}
+	data->map[times] = NULL;
+	return (1);
+}
+
+int	allocate_map(char *filename, t_game *data)
+{
+	char	*line;
+	int		fd;
+	int		times;
+
+	times = 0;
+	fd = open(filename, O_RDONLY);
+	if (!fd)
+		return (0);
+	line = get_next_line(fd);
+	if (!line)
+		return (0);
+	while (line != NULL)
+	{
+		fill_map(line, data, times);
+		free(line);
+		line = get_next_line(fd);
+		times++;
+	}
+	// ft_printf("%s\n", data->map[0]);
+	free(line);
+	close(fd);
+	return (1);
+}
+
+int	check_map(char *filename, t_comp *comp_list, t_game *data)
 {
 	int	fd;
 	int	len;
 
 	len = ft_strlen(filename);
-	if (!(filename[len - 1] == 'r' && filename[len - 2] == 'e'
-			&& filename[len - 3] == 'b' && filename[len - 4] == '.'))
+	if (!(filename[len - 1] == 'r' && filename[len - 2] == 'e' && filename[len
+			- 3] == 'b' && filename[len - 4] == '.'))
 		return (0);
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 		return (0);
-	if (!isvalid_map(fd))
+	if (!isvalid_map(fd, comp_list, data))
 		return (close(fd), 0);
 	close(fd);
 	fd = open(filename, O_RDONLY);
@@ -88,5 +141,7 @@ int	check_map(char *filename)
 		return (0);
 	if (!first_and_last_wall(fd))
 		return (close(fd), 0);
+	close(fd);
+	allocate_map(filename, data);
 	return (1);
 }

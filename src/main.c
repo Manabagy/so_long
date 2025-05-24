@@ -6,7 +6,7 @@
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 19:19:28 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/05/22 21:14:27 by mabaghda         ###   ########.fr       */
+/*   Updated: 2025/05/24 13:50:05 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,20 @@
 
 int	main(int argc, char **argv)
 {
+	t_comp	comp_list;
+	t_game	data;
+
 	if (argc != 2)
 		return (1);
-	if (!check_map(argv[1]))
+	init_game(&comp_list, &data);
+	if (!check_map(argv[1], &comp_list, &data))
 	{
 		ft_printf("Invalid map\n");
 		return (1);
 	}
+	// ft_printf("%s\n", data.map[0]);
+	// ft_printf("%s\n", data.map[1]);
+	// ft_printf("%s\n", data.map[2]);
 	ft_printf("ok\n");
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 19:17:11 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/05/22 20:44:34 by mabaghda         ###   ########.fr       */
+/*   Updated: 2025/05/24 13:32:28 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ typedef struct s_collect
 	int		count;
 }			t_collect;
 
-int			isvalid_map(int fd);
+int			isvalid_map(int fd, t_comp *comp_list, t_game *data);
 int			check_line(char *line, t_comp *comp_list);
 void		count_components(char *line, t_comp *comp_list);
 int			check_wall(char *line);
@@ -54,6 +54,10 @@ int			first_and_last_wall(int fd);
 int			firstnlast(char *line);
 int			width(char *line);
 int			valid_characters(char *line);
-int			check_map(char *filename);
+int			check_map(char *filename, t_comp *comp_list, t_game *data);
+void		init_game(t_comp *comp_list, t_game *data);
+int			allocate_map(char *filename, t_game *data);
+void		*free_array(char **array);
+int			fill_map(char *line, t_game *data, int times);
 
 #endif

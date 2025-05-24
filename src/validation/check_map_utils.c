@@ -6,11 +6,11 @@
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 17:23:58 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/05/22 20:42:51 by mabaghda         ###   ########.fr       */
+/*   Updated: 2025/05/24 11:45:15 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
+#include "../../include/so_long.h"
 
 int	valid_characters(char *line)
 {

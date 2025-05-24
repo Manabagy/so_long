@@ -6,17 +6,19 @@
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:07:17 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/05/22 20:48:40 by mabaghda         ###   ########.fr       */
+/*   Updated: 2025/05/24 11:45:32 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
+#include "../../include/so_long.h"
 
 void	count_components(char *line, t_comp *comp_list)
 {
 	int	i;
 
 	i = 0;
+	if (!line || !comp_list)
+		return ;
 	while (line[i])
 	{
 		if (line[i] == 'P')
@@ -54,4 +56,12 @@ int	check_comp_count(t_comp *comp_list)
 		|| comp_list->coll_count == 0)
 		return (0);
 	return (1);
+}
+
+void	init_game(t_comp *comp_list, t_game *data)
+{
+	comp_list->player_count = 0;
+	comp_list->exit_count = 0;
+	comp_list->coll_count = 0;
+	data->height = 0;
 }
