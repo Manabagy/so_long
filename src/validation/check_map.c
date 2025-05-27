@@ -6,7 +6,7 @@
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 15:10:06 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/05/24 13:50:13 by mabaghda         ###   ########.fr       */
+/*   Updated: 2025/05/27 12:45:36 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,71 +64,14 @@ int	isvalid_map(int fd, t_comp *comp_list, t_game *data)
 	return (1);
 }
 
-void	*free_array(char **array)
-{
-	int	i;
-
-	i = 0;
-	while (array[i])
-	{
-		free(array[i]);
-		i++;
-	}
-	free(array);
-	return (NULL);
-}
-
-int	fill_map(char *line, t_game *data, int times)
-{
-	if (line[ft_strlen(line) - 1] == '\n')
-		line[ft_strlen(line) - 1] = '\0';
-	data->map = (char **)malloc(sizeof(char *) * data->height);
-	if (!data->map)
-		return (0);
-	data->map[times] = ft_strdup(line);
-	if (!data->map[times])
-	{
-		free_array(data->map);
-		return (0);
-	}
-	data->map[times] = NULL;
-	return (1);
-}
-
-int	allocate_map(char *filename, t_game *data)
-{
-	char	*line;
-	int		fd;
-	int		times;
-
-	times = 0;
-	fd = open(filename, O_RDONLY);
-	if (!fd)
-		return (0);
-	line = get_next_line(fd);
-	if (!line)
-		return (0);
-	while (line != NULL)
-	{
-		fill_map(line, data, times);
-		free(line);
-		line = get_next_line(fd);
-		times++;
-	}
-	// ft_printf("%s\n", data->map[0]);
-	free(line);
-	close(fd);
-	return (1);
-}
-
 int	check_map(char *filename, t_comp *comp_list, t_game *data)
 {
 	int	fd;
 	int	len;
 
 	len = ft_strlen(filename);
-	if (!(filename[len - 1] == 'r' && filename[len - 2] == 'e' && filename[len
-			- 3] == 'b' && filename[len - 4] == '.'))
+	if (!(filename[len - 1] == 'r' && filename[len - 2] == 'e'
+			&& filename[len - 3] == 'b' && filename[len - 4] == '.'))
 		return (0);
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
