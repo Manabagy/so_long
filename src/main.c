@@ -6,7 +6,7 @@
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 19:19:28 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/05/27 12:42:33 by mabaghda         ###   ########.fr       */
+/*   Updated: 2025/05/27 18:58:22 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ int	main(int argc, char **argv)
 {
 	t_comp	comp_list;
 	t_game	data;
-
+	void	*mlx;
+	void	*mlx_win;
 	if (argc != 2)
 		return (1);
 	init_game(&comp_list, &data);
@@ -25,6 +26,9 @@ int	main(int argc, char **argv)
 		ft_printf("Invalid map\n");
 		return (1);
 	}
+	mlx = mlx_init();
+	mlx_win = mlx_new_window(mlx, 1920, 1080, "so_long");
+	mlx_loop(mlx);
 	ft_printf("ok\n");
 	return (0);
 }

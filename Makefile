@@ -1,7 +1,7 @@
 NAME = so_long
 PRINTF_DIR = ./ft_printf
 PRINTF = $(PRINTF_DIR)/libftprintf.a
-# MLX = -lmlx -lXext -lX11 -lm
+MLX = -Lmlx_Linux -lmlx_Linux -L ./minilibx-linux -Imlx_Linux -lXext -lX11 -lm -lz
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
@@ -15,7 +15,7 @@ all: $(NAME)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME): $(OBJ) $(PRINTF)
-	$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(PRINTF)
+	$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(PRINTF) $(MLX)
 
 $(PRINTF):
 	make -C $(PRINTF_DIR)

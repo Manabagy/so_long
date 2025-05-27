@@ -6,7 +6,7 @@
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 15:10:06 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/05/27 12:45:36 by mabaghda         ###   ########.fr       */
+/*   Updated: 2025/05/27 18:58:56 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int	isvalid_map(int fd, t_comp *comp_list, t_game *data)
 	if (!line)
 		return (0);
 	data->width = width(line);
+	(void)comp_list;
 	while (line != NULL)
 	{
 		data->height++;
@@ -69,9 +70,11 @@ int	check_map(char *filename, t_comp *comp_list, t_game *data)
 	int	fd;
 	int	len;
 
+	(void)comp_list;
+	(void)data;
 	len = ft_strlen(filename);
-	if (!(filename[len - 1] == 'r' && filename[len - 2] == 'e'
-			&& filename[len - 3] == 'b' && filename[len - 4] == '.'))
+	if (!(filename[len - 1] == 'r' && filename[len - 2] == 'e' && filename[len
+			- 3] == 'b' && filename[len - 4] == '.'))
 		return (0);
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
