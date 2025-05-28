@@ -6,7 +6,7 @@
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 19:19:28 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/05/27 18:58:22 by mabaghda         ###   ########.fr       */
+/*   Updated: 2025/05/28 16:15:41 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,23 @@
 
 int	main(int argc, char **argv)
 {
-	t_comp	comp_list;
-	t_game	data;
-	void	*mlx;
-	void	*mlx_win;
+	t_comp		comp_list;
+	t_game		data;
+	t_player	player;
+	void		*mlx;
+	void		*mlx_win;
+
 	if (argc != 2)
 		return (1);
-	init_game(&comp_list, &data);
+	init_game(&comp_list, &data, &player);
 	if (!check_map(argv[1], &comp_list, &data))
 	{
 		ft_printf("Invalid map\n");
+		return (1);
+	}
+	if (!check_path(&data, &player))
+	{
+		ft_printf("Invalid Path\n");
 		return (1);
 	}
 	mlx = mlx_init();

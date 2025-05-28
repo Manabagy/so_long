@@ -6,7 +6,7 @@
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 15:10:06 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/05/27 18:58:56 by mabaghda         ###   ########.fr       */
+/*   Updated: 2025/05/28 16:16:44 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,8 @@ int	check_map(char *filename, t_comp *comp_list, t_game *data)
 	(void)comp_list;
 	(void)data;
 	len = ft_strlen(filename);
-	if (!(filename[len - 1] == 'r' && filename[len - 2] == 'e' && filename[len
-			- 3] == 'b' && filename[len - 4] == '.'))
+	if (!(filename[len - 1] == 'r' && filename[len - 2] == 'e'
+			&& filename[len - 3] == 'b' && filename[len - 4] == '.'))
 		return (0);
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
@@ -89,5 +89,43 @@ int	check_map(char *filename, t_comp *comp_list, t_game *data)
 		return (close(fd), 0);
 	close(fd);
 	allocate_map(filename, data);
+	return (1);
+}
+
+int	is_valid_path(char **map_dub)
+{
+	int	y;
+	int	x;
+
+	y = 0;
+	while (map_dub[y])
+	{
+		x = 0;
+		while (map_dub[y][x])
+		{
+			if (map_dub[y][x] == 'C' || map_dub[y][x] == 'E')
+				return (0);
+			x++;
+		}
+		y++;
+	}
+	return (1);
+}
+
+int	check_path(t_game *data, t_player *player)
+{
+	char	**dub;
+
+	find_p_pos(data, player);
+	dub = dup_map(data->map, data->height);
+	flood_fill(dub, player->pos_x, player->pos_y);
+	if (!is_valid_path(dub))
+		return (0);
+	ft_printf("%s\n", dub[0]);
+	ft_printf("%s\n", dub[1]);
+	ft_printf("%s\n", dub[2]);
+	ft_printf("%s\n", dub[3]);
+	ft_printf("%s\n", dub[4]);
+	ft_printf("%s\n", dub[5]);
 	return (1);
 }

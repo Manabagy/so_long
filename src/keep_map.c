@@ -6,7 +6,7 @@
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 12:43:16 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/05/27 12:45:11 by mabaghda         ###   ########.fr       */
+/*   Updated: 2025/05/28 16:16:27 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,33 @@ int	allocate_map(char *filename, t_game *data)
 	free(line);
 	close(fd);
 	return (1);
+}
+
+void	flood_fill(char **map, int x, int y)
+{
+	if (map[y][x] == '1' || map[y][x] == 'M')
+		return ;
+	map[y][x] = 'M';
+	flood_fill(map, x + 1, y);
+	flood_fill(map, x - 1, y);
+	flood_fill(map, x, y + 1);
+	flood_fill(map, x, y - 1);
+}
+
+char	**dup_map(char **map, int size)
+{
+	char	**duplicate;
+	int		i;
+
+	i = 0;
+	duplicate = (char **)malloc(sizeof(char *) * (size + 1));
+	if (!duplicate)
+		return (NULL);
+	while (i < size)
+	{
+		duplicate[i] = ft_strdup(map[i]);
+		i++;
+	}
+	duplicate[i] = NULL;
+	return (duplicate);
 }

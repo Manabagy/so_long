@@ -6,7 +6,7 @@
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:07:17 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/05/27 18:44:52 by mabaghda         ###   ########.fr       */
+/*   Updated: 2025/05/28 13:16:49 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,12 @@ int	check_comp_count(t_comp *comp_list)
 	return (1);
 }
 
-void	init_game(t_comp *comp_list, t_game *data)
+void	init_game(t_comp *comp_list, t_game *data, t_player *player)
 {
 	comp_list->player_count = 0;
 	comp_list->exit_count = 0;
 	comp_list->coll_count = 0;
 	data->height = 0;
+	player->pos_x = 0;
+	player->pos_y = 0;
 }
