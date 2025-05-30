@@ -6,7 +6,7 @@
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 19:17:11 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/05/30 14:56:44 by mabaghda         ###   ########.fr       */
+/*   Updated: 2025/05/30 15:44:07 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,6 @@ void		flood_fill(char **map, int x, int y);
 void		init_images(t_game *data);
 void		draw_map(t_game *data);
 void		start_game(t_game *data);
+void		draw_image(t_game *data, void *img, int i, int j);
 
 #endif

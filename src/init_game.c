@@ -6,7 +6,7 @@
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 12:18:51 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/05/30 14:59:04 by mabaghda         ###   ########.fr       */
+/*   Updated: 2025/05/30 15:43:37 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,11 @@ void	init_images(t_game *data)
 			&w, &h);
 }
 
+void	draw_image(t_game *data, void *img, int i, int j)
+{
+	mlx_put_image_to_window(data->mlx, data->win, img, (j * SIZE), (i * SIZE));
+}
+
 void	draw_map(t_game *data)
 {
 	int	i;
@@ -41,23 +46,15 @@ void	draw_map(t_game *data)
 		j = 0;
 		while (data->map[i][j])
 		{
-			mlx_put_image_to_window(data->mlx, data->win, data->img_floor, (j
-					* SIZE), (i * SIZE));
-			// if (data->map[i][j] == '0')
-			// 	mlx_put_image_to_window(data->mlx, data->win, data->img_floor,
-			// 		(j * SIZE), (i * SIZE));
+			draw_image(data, data->img_floor, i, j);
 			if (data->map[i][j] == '1')
-				mlx_put_image_to_window(data->mlx, data->win, data->img_wall, (j
-						* SIZE), (i * SIZE));
+				draw_image(data, data->img_wall, i, j);
 			else if (data->map[i][j] == 'P')
-				mlx_put_image_to_window(data->mlx, data->win, data->img_player,
-					(j * SIZE), (i * SIZE));
+				draw_image(data, data->img_player, i, j);
 			else if (data->map[i][j] == 'C')
-				mlx_put_image_to_window(data->mlx, data->win,
-					data->img_collective, (j * SIZE), (i * SIZE));
+				draw_image(data, data->img_collective, i, j);
 			else if (data->map[i][j] == 'E')
-				mlx_put_image_to_window(data->mlx, data->win, data->img_exit, (j
-						* SIZE), (i * SIZE));
+				draw_image(data, data->img_exit, i, j);
 			j++;
 		}
 		i++;
@@ -67,7 +64,8 @@ void	draw_map(t_game *data)
 void	start_game(t_game *data)
 {
 	data->mlx = mlx_init();
-	data->win = mlx_new_window(data->mlx, (data->width * SIZE), (data->height * SIZE), "so_long");
+	data->win = mlx_new_window(data->mlx, (data->width * SIZE), (data->height
+				* SIZE), "so_long");
 	draw_map(data);
 	mlx_loop(data->mlx);
 }
