@@ -6,7 +6,7 @@
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 19:17:11 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/05/28 16:14:29 by mabaghda         ###   ########.fr       */
+/*   Updated: 2025/05/30 12:21:02 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,13 @@
 typedef struct s_game
 {
 	char	**map;
+	void	*mlx;
+	void	*win;
+	void	*img_wall;
+	void	*img_player;
+	void	*img_floor;
+	void	*img_exit;
+	void	*img_collective;
 	int		width;
 	int		height;
 }			t_game;
@@ -57,5 +64,6 @@ void		find_p_pos(t_game *data, t_player *player);
 char		**dup_map(char **map, int size);
 int			check_path(t_game *data, t_player *player);
 void		flood_fill(char **map, int x, int y);
+void		init_images(t_game *data);
 
 #endif

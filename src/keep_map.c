@@ -6,7 +6,7 @@
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 12:43:16 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/05/28 16:16:27 by mabaghda         ###   ########.fr       */
+/*   Updated: 2025/05/30 12:40:34 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,11 @@ char	**dup_map(char **map, int size)
 	while (i < size)
 	{
 		duplicate[i] = ft_strdup(map[i]);
+		if (!duplicate[i])
+		{
+			free_array(duplicate);
+			return (NULL);
+		}
 		i++;
 	}
 	duplicate[i] = NULL;

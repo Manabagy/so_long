@@ -6,7 +6,7 @@
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 15:10:06 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/05/28 16:16:44 by mabaghda         ###   ########.fr       */
+/*   Updated: 2025/05/30 11:58:05 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,11 +121,5 @@ int	check_path(t_game *data, t_player *player)
 	flood_fill(dub, player->pos_x, player->pos_y);
 	if (!is_valid_path(dub))
 		return (0);
-	ft_printf("%s\n", dub[0]);
-	ft_printf("%s\n", dub[1]);
-	ft_printf("%s\n", dub[2]);
-	ft_printf("%s\n", dub[3]);
-	ft_printf("%s\n", dub[4]);
-	ft_printf("%s\n", dub[5]);
 	return (1);
 }
