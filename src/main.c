@@ -6,7 +6,7 @@
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 19:19:28 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/05/30 12:31:02 by mabaghda         ###   ########.fr       */
+/*   Updated: 2025/05/30 13:24:18 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,9 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	ft_printf("ok\n");
-	init_images(&data);
+	data.mlx = mlx_init();
+	data.win = mlx_new_window(data.mlx, 1920, 1080, "so_long");
+	draw_images(&data);
+	mlx_loop(data.mlx);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 12:18:51 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/05/30 12:37:07 by mabaghda         ###   ########.fr       */
+/*   Updated: 2025/05/30 13:21:15 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,29 @@
 
 void	init_images(t_game *data)
 {
-	data->mlx = mlx_init();
-	data->win = mlx_new_window(data->mlx, 1920, 1080, "so_long");
-	mlx_loop(data->mlx);
-	// data->img_wall = mlx_xpm_file_to_image(data->mlx, "textures/100rock.xpm");
-	// data->img_floor = mlx_xpm_file_to_image(data->mlx, "textures/100space.xpm");
-	// data->img_collective = mlx_xpm_file_to_image(data->mlx, "textures/100stone.xpm");
-	// data->img_player = mlx_xpm_file_to_image(data->mlx, "textures/100lokiright.xpm");
+	int	w;
+	int	h;
+
+	data->img_wall = mlx_xpm_file_to_image(data->mlx, "textures/100rock.xpm",
+			&w, &h);
+	data->img_floor = mlx_xpm_file_to_image(data->mlx, "textures/100space.xpm",
+			&w, &h);
+	data->img_collective = mlx_xpm_file_to_image(data->mlx,
+			"textures/100stone.xpm", &w, &h);
+	data->img_player = mlx_xpm_file_to_image(data->mlx,
+			"textures/100lokiright.xpm", &w, &h);
+}
+
+int	draw_images(t_game *data)
+{
+	init_images(data);
+	mlx_put_image_to_window(data->mlx, data->win, data->img_floor, 0 * 100, 0
+		* 100);
+	mlx_put_image_to_window(data->mlx, data->win, data->img_wall, 1 * 100, 0
+		* 100);
+	mlx_put_image_to_window(data->mlx, data->win, data->img_collective, 2 * 100,
+		0 * 100);
+	mlx_put_image_to_window(data->mlx, data->win, data->img_player, 3 * 100, 0
+		* 100);
+	return (0);
 }

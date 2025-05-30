@@ -26,10 +26,10 @@ clean:
 
 
 fclean: clean
-	make -sC $(PRINTF_DIR) fclean
+	make -C $(PRINTF_DIR) fclean
 	rm -f $(NAME) $(BONUS)
 
 
-re: fclean all bonus
+re: fclean all
 
 .PHONY: clean fclean re all bonus
