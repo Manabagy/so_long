@@ -6,7 +6,7 @@
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 19:17:11 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/05/30 13:20:10 by mabaghda         ###   ########.fr       */
+/*   Updated: 2025/05/30 14:56:44 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include "gnl.h"
 # include <fcntl.h>
 # include <stdlib.h>
+
+# define SIZE 100
 
 typedef struct s_game
 {
@@ -65,6 +67,7 @@ char		**dup_map(char **map, int size);
 int			check_path(t_game *data, t_player *player);
 void		flood_fill(char **map, int x, int y);
 void		init_images(t_game *data);
-int			draw_images(t_game *data);
+void		draw_map(t_game *data);
+void		start_game(t_game *data);
 
 #endif
