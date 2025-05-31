@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: manana <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 15:10:06 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/05/30 11:58:05 by mabaghda         ###   ########.fr       */
+/*   Updated: 2025/05/31 19:02:17 by manana           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,9 @@ int	isvalid_map(int fd, t_comp *comp_list, t_game *data)
 		free(line);
 		line = get_next_line(fd);
 	}
-	free(line);
 	if (!check_comp_count(comp_list))
 		return (free(line), 0);
+	free(line);
 	close(fd);
 	return (1);
 }
