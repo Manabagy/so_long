@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: manana <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 15:10:06 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/05/31 19:02:17 by manana           ###   ########.fr       */
+/*   Updated: 2025/06/01 16:04:38 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,34 +92,23 @@ int	check_map(char *filename, t_comp *comp_list, t_game *data)
 	return (1);
 }
 
-int	is_valid_path(char **map_dub)
+int	check_path(t_game *data, t_player *player, t_comp *comp_list)
 {
-	int	y;
-	int	x;
+	char	**dup1;
+	char	**dup2;
+	int		found_c;
+	int		exit_reached;
 
-	y = 0;
-	while (map_dub[y])
-	{
-		x = 0;
-		while (map_dub[y][x])
-		{
-			if (map_dub[y][x] == 'C' || map_dub[y][x] == 'E')
-				return (0);
-			x++;
-		}
-		y++;
-	}
-	return (1);
-}
-
-int	check_path(t_game *data, t_player *player)
-{
-	char	**dub;
-
+	found_c = 0;
+	exit_reached = 0;
 	find_p_pos(data, player);
-	dub = dup_map(data->map, data->height);
-	flood_fill(dub, player->pos_x, player->pos_y);
-	if (!is_valid_path(dub))
+	dup1 = dup_map(data->map, data->height);
+	dup2 = dup_map(data->map, data->height);
+	flood_fill_coll(dup1, player->pos_x, player->pos_y, &found_c);
+	if (found_c != comp_list->coll_count)
+		return (0);
+	flood_fill_exit(dup2, player->pos_x, player->pos_y, &exit_reached);
+	if (!exit_reached)
 		return (0);
 	return (1);
 }

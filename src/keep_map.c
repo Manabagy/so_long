@@ -6,7 +6,7 @@
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 12:43:16 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/05/30 12:40:34 by mabaghda         ###   ########.fr       */
+/*   Updated: 2025/06/01 15:56:21 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,15 +54,33 @@ int	allocate_map(char *filename, t_game *data)
 	return (1);
 }
 
-void	flood_fill(char **map, int x, int y)
+void	flood_fill_coll(char **map, int x, int y, int *found_c)
+{
+	if (map[y][x] == '1' || map[y][x] == 'M' || map[y][x] == 'E')
+		return ;
+	if (map[y][x] == 'C')
+		(*found_c)++;
+	map[y][x] = 'M';
+	flood_fill_coll(map, x + 1, y, found_c);
+	flood_fill_coll(map, x - 1, y, found_c);
+	flood_fill_coll(map, x, y + 1, found_c);
+	flood_fill_coll(map, x, y - 1, found_c);
+}
+
+void	flood_fill_exit(char **map, int x, int y, int *exit)
 {
 	if (map[y][x] == '1' || map[y][x] == 'M')
 		return ;
+	if (map[y][x] == 'E')
+	{
+		*exit = 1;
+		return ;
+	}
 	map[y][x] = 'M';
-	flood_fill(map, x + 1, y);
-	flood_fill(map, x - 1, y);
-	flood_fill(map, x, y + 1);
-	flood_fill(map, x, y - 1);
+	flood_fill_exit(map, x + 1, y, exit);
+	flood_fill_exit(map, x - 1, y, exit);
+	flood_fill_exit(map, x, y + 1, exit);
+	flood_fill_exit(map, x, y - 1, exit);
 }
 
 char	**dup_map(char **map, int size)

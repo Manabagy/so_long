@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: manana <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 19:17:11 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/05/31 19:01:36 by manana           ###   ########.fr       */
+/*   Updated: 2025/06/01 15:57:01 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,12 @@ void		*free_array(char **array);
 int			fill_map(char *line, t_game *data, int times);
 void		find_p_pos(t_game *data, t_player *player);
 char		**dup_map(char **map, int size);
-int			check_path(t_game *data, t_player *player);
-void		flood_fill(char **map, int x, int y);
+int			check_path(t_game *data, t_player *player, t_comp *comp_list);
+void		flood_fill_coll(char **map, int x, int y, int *found_c);
+void		flood_fill_exit(char **map, int x, int y, int *exit);
 void		init_images(t_game *data);
 void		draw_map(t_game *data);
-void		start_game(t_game *data);
+void		start_game(t_game *data, t_comp *comp_list);
 void		draw_image(t_game *data, void *img, int i, int j);
 
 #endif

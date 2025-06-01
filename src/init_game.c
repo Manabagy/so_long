@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: manana <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 12:18:51 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/05/31 19:22:39 by manana           ###   ########.fr       */
+/*   Updated: 2025/06/01 15:22:38 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,13 @@ void	draw_map(t_game *data)
 	}
 }
 
-void	start_game(t_game *data)
+void	start_game(t_game *data, t_comp *comp_list)
 {
+	(void)comp_list;
 	data->mlx = mlx_init();
 	data->win = mlx_new_window(data->mlx, (data->width * SIZE), (data->height
 				* SIZE), "so_long");
+	init_images(data);
 	draw_map(data);
 	mlx_loop(data->mlx);
 }
