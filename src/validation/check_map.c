@@ -6,7 +6,7 @@
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 15:10:06 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/06/02 12:25:38 by mabaghda         ###   ########.fr       */
+/*   Updated: 2025/06/02 15:36:33 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ int	check_path(t_game *data)
 
 	found_c = 0;
 	exit_reached = 0;
-	find_p_pos(data, &data->player);
+	find_p_pos(data);
 	dup1 = dup_map(data->map, data->height);
 	dup2 = dup_map(data->map, data->height);
 	flood_fill_coll(dup1, data->player.pos_x, data->player.pos_y, &found_c);

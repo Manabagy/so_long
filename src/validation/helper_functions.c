@@ -6,7 +6,7 @@
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:07:17 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/06/02 12:57:43 by mabaghda         ###   ########.fr       */
+/*   Updated: 2025/06/02 15:32:35 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,8 @@ void	init_game(t_game *data)
 	data->win = NULL;
 	data->img_collective = NULL;
 	data->img_wall = NULL;
-	data->img_player = NULL;
+	data->img_player_right = NULL;
+	data->img_player_left = NULL;
 	data->img_floor = NULL;
 	data->img_exit = NULL;
 }

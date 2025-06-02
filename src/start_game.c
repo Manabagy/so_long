@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_game.c                                        :+:      :+:    :+:   */
+/*   start_game.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 12:18:51 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/06/02 12:26:06 by mabaghda         ###   ########.fr       */
+/*   Updated: 2025/06/02 15:36:17 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,26 @@ void	init_images(t_game *data)
 	int	w;
 	int	h;
 
+	w = 100;
+	h = 100;
 	data->img_wall = mlx_xpm_file_to_image(data->mlx, "textures/100rock.xpm",
 			&w, &h);
 	data->img_floor = mlx_xpm_file_to_image(data->mlx, "textures/100space.xpm",
 			&w, &h);
 	data->img_collective = mlx_xpm_file_to_image(data->mlx,
 			"textures/100stone.xpm", &w, &h);
-	data->img_player = mlx_xpm_file_to_image(data->mlx,
+	data->img_player_right = mlx_xpm_file_to_image(data->mlx,
 			"textures/100lokiright.xpm", &w, &h);
+	data->img_player_left = mlx_xpm_file_to_image(data->mlx,
+			"textures/100lokileft.xpm", &w, &h);
 	data->img_exit = mlx_xpm_file_to_image(data->mlx, "textures/100asgard.xpm",
 			&w, &h);
+	if (!data->img_wall || !data->img_floor || !data->img_collective
+		|| !data->img_player_right || !data->img_player_left || !data->img_exit)
+	{
+		ft_printf("Error: Failed to load one or more textures\n");
+		exit(1);
+	}
 }
 
 void	draw_image(t_game *data, void *img, int i, int j)
@@ -49,7 +59,7 @@ void	draw_map(t_game *data)
 			if (data->map[i][j] == '1')
 				draw_image(data, data->img_wall, i, j);
 			else if (data->map[i][j] == 'P')
-				draw_image(data, data->img_player, i, j);
+				draw_image(data, data->img_player_right, i, j);
 			else if (data->map[i][j] == 'C')
 				draw_image(data, data->img_collective, i, j);
 			else if (data->map[i][j] == 'E')

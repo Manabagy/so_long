@@ -6,7 +6,7 @@
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 19:27:59 by manana            #+#    #+#             */
-/*   Updated: 2025/06/02 14:28:28 by mabaghda         ###   ########.fr       */
+/*   Updated: 2025/06/02 15:35:31 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,23 +40,24 @@ void	move_player(t_game *data, int move_y, int move_x)
 
 	new_pos_x = data->player.pos_x + move_x;
 	new_pos_y = data->player.pos_y + move_y;
-	if (new_pos_x < 0 || new_pos_y < 0 || new_pos_y >= data->height
-		|| new_pos_x >= data->width)
-		return ;
 	if (data->map[new_pos_y][new_pos_x] == '1')
 		return ;
 	if (data->map[new_pos_y][new_pos_x] == 'C')
 		data->collected++;
 	if (data->map[new_pos_y][new_pos_x] == 'E')
 	{
-		if (data->collected != data->comps.coll_count)
-			return ;
+		if (data->collected == data->comps.coll_count)
+		{
+			ft_printf("You won in %d moves!\n", data->moves + 1);
+			close_window(data);
+		}
+		return ;
 	}
 	data->moves++;
 	data->map[data->player.pos_y][data->player.pos_x] = '0';
 	data->map[new_pos_y][new_pos_x] = 'P';
 	draw_image(data, data->img_floor, data->player.pos_y, data->player.pos_x);
-	draw_image(data, data->img_player, new_pos_y, new_pos_x);
+	draw_image(data, data->img_player_right, new_pos_y, new_pos_x);
 	data->player.pos_x = new_pos_x;
 	data->player.pos_y = new_pos_y;
 }

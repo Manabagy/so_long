@@ -6,7 +6,7 @@
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 17:23:58 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/05/28 16:14:08 by mabaghda         ###   ########.fr       */
+/*   Updated: 2025/06/02 15:28:28 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	*free_array(char **array)
 	return (NULL);
 }
 
-void	find_p_pos(t_game *data, t_player *player)
+void	find_p_pos(t_game *data)
 {
 	int	i;
 	int	j;
@@ -78,8 +78,8 @@ void	find_p_pos(t_game *data, t_player *player)
 		{
 			if (data->map[i][j] == 'P')
 			{
-				player->pos_y = i;
-				player->pos_x = j;
+				data->player.pos_y = i;
+				data->player.pos_x = j;
 			}
 			j++;
 		}
