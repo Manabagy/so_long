@@ -6,7 +6,7 @@
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 19:17:11 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/06/02 11:54:44 by mabaghda         ###   ########.fr       */
+/*   Updated: 2025/06/02 12:29:16 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,13 @@ typedef struct s_player
 	int			pos_y;
 }				t_player;
 
+typedef struct s_comp
+{
+	int			player_count;
+	int			exit_count;
+	int			coll_count;
+}				t_comp;
+
 typedef struct s_game
 {
 	char		**map;
@@ -46,16 +53,10 @@ typedef struct s_game
 	int			width;
 	int			height;
 	t_player	player;
+	t_comp		comps;
 	int			collected;
 	int			moves;
 }				t_game;
-
-typedef struct s_comp
-{
-	int			player_count;
-	int			exit_count;
-	int			coll_count;
-}				t_comp;
 
 int				isvalid_map(int fd, t_comp *comp_list, t_game *data);
 int				check_line(char *line, t_comp *comp_list);
@@ -66,23 +67,22 @@ int				first_and_last_wall(int fd);
 int				firstnlast(char *line);
 int				width(char *line);
 int				valid_characters(char *line);
-int				check_map(char *filename, t_comp *comp_list, t_game *data);
-void			init_game(t_comp *comp_list, t_game *data);
+int				check_map(char *filename, t_game *data);
+void			init_game(t_game *data);
 int				allocate_map(char *filename, t_game *data);
 void			*free_array(char **array);
 int				fill_map(char *line, t_game *data, int times);
 void			find_p_pos(t_game *data, t_player *player);
 char			**dup_map(char **map, int size);
-int				check_path(t_game *data, t_comp *comp_list);
+int				check_path(t_game *data);
 void			flood_fill_coll(char **map, int x, int y, int *found_c);
 void			flood_fill_exit(char **map, int x, int y, int *exit);
 void			init_images(t_game *data);
 void			draw_map(t_game *data);
-void			start_game(t_game *data, t_comp *comp_list);
+void			start_game(t_game *data);
 void			draw_image(t_game *data, void *img, int i, int j);
 int				close_window(t_game *data);
 int				key_handler(int keycode, t_game *data);
-void			move_player(t_game *data, t_player *player, int move_y,
-					int move_x);
+void			move_player(t_game *data, int move_y, int move_x);
 
 #endif
