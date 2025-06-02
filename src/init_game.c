@@ -6,7 +6,7 @@
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 12:18:51 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/06/01 17:48:00 by mabaghda         ###   ########.fr       */
+/*   Updated: 2025/06/02 11:38:21 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,7 @@ void	start_game(t_game *data, t_comp *comp_list)
 				* SIZE), "so_long");
 	init_images(data);
 	draw_map(data);
+	mlx_key_hook(data->win, key_handler, data);
+	mlx_hook(data->win, 17, 0, close_window, data);
 	mlx_loop(data->mlx);
 }
