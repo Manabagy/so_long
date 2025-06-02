@@ -6,7 +6,7 @@
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 12:18:51 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/06/02 17:50:05 by mabaghda         ###   ########.fr       */
+/*   Updated: 2025/06/02 19:28:11 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ void	init_images(t_game *data)
 			&w, &h);
 	data->img_collective = mlx_xpm_file_to_image(data->mlx,
 			"textures/100stone.xpm", &w, &h);
+	data->img_player = mlx_xpm_file_to_image(data->mlx, "textures/100loki.xpm",
+			&w, &h);
 	data->img_player_right = mlx_xpm_file_to_image(data->mlx,
 			"textures/100lokiright.xpm", &w, &h);
 	data->img_player_left = mlx_xpm_file_to_image(data->mlx,
@@ -33,7 +35,7 @@ void	init_images(t_game *data)
 			&w, &h);
 	if (!data->img_wall || !data->img_floor || !data->img_collective
 		|| !data->img_player_right || !data->img_player_left || !data->img_exit
-		|| !data->img_enemy)
+		|| !data->img_enemy || !data->img_player)
 	{
 		ft_printf("Error: Failed to load one or more textures\n");
 		exit(1);
@@ -60,7 +62,7 @@ void	draw_map(t_game *data)
 			if (data->map[i][j] == '1')
 				draw_image(data, data->img_wall, i, j);
 			else if (data->map[i][j] == 'P')
-				draw_image(data, data->img_player_right, i, j);
+				draw_image(data, data->img_player, i, j);
 			else if (data->map[i][j] == 'C')
 				draw_image(data, data->img_collective, i, j);
 			else if (data->map[i][j] == 'E')

@@ -6,7 +6,7 @@
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:07:17 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/06/02 17:40:00 by mabaghda         ###   ########.fr       */
+/*   Updated: 2025/06/02 19:20:57 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void	init_game(t_game *data)
 	data->moves = 0;
 	data->height = 0;
 	data->width = 0;
+	data->key_pressed = 0;
 	data->player.pos_x = 0;
 	data->player.pos_y = 0;
 	data->map = NULL;
@@ -74,6 +75,7 @@ void	init_game(t_game *data)
 	data->win = NULL;
 	data->img_collective = NULL;
 	data->img_wall = NULL;
+	data->img_player = NULL;
 	data->img_player_right = NULL;
 	data->img_player_left = NULL;
 	data->img_floor = NULL;
