@@ -6,7 +6,7 @@
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 19:27:59 by manana            #+#    #+#             */
-/*   Updated: 2025/06/02 15:35:31 by mabaghda         ###   ########.fr       */
+/*   Updated: 2025/06/02 16:05:42 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,26 @@
 
 int	close_window(t_game *data)
 {
-	mlx_destroy_window(data->mlx, data->win);
+	if (data->img_wall)
+		mlx_destroy_image(data->mlx, data->img_wall);
+	if (data->img_floor)
+		mlx_destroy_image(data->mlx, data->img_floor);
+	if (data->img_collective)
+		mlx_destroy_image(data->mlx, data->img_collective);
+	if (data->img_player_right)
+		mlx_destroy_image(data->mlx, data->img_player_right);
+	if (data->img_player_left)
+		mlx_destroy_image(data->mlx, data->img_player_left);
+	if (data->img_exit)
+		mlx_destroy_image(data->mlx, data->img_exit);
+	if (data->win)
+		mlx_destroy_window(data->mlx, data->win);
+	if (data->mlx)
+	{
+		mlx_destroy_display(data->mlx);
+		free(data->mlx);
+	}
+	free_array(data->map);
 	exit(0);
 }
 
