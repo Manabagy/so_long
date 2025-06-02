@@ -6,7 +6,7 @@
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 19:17:11 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/06/02 15:28:04 by mabaghda         ###   ########.fr       */
+/*   Updated: 2025/06/02 18:01:08 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ typedef struct s_game
 	void		*mlx;
 	void		*win;
 	void		*img_wall;
-	// void		*img_player;
+	void		*img_enemy;
 	void		*img_player_right;
 	void		*img_player_left;
 	void		*img_floor;
@@ -86,5 +86,6 @@ void			draw_image(t_game *data, void *img, int i, int j);
 int				close_window(t_game *data);
 int				key_handler(int keycode, t_game *data);
 void			move_player(t_game *data, int move_y, int move_x);
+void			change_pos(t_game *data, int new_pos_y, int new_pos_x);
 
 #endif

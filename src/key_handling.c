@@ -6,7 +6,7 @@
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 19:27:59 by manana            #+#    #+#             */
-/*   Updated: 2025/06/02 16:05:42 by mabaghda         ###   ########.fr       */
+/*   Updated: 2025/06/02 18:01:51 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,17 @@ void	move_player(t_game *data, int move_y, int move_x)
 		}
 		return ;
 	}
+	if (data->map[new_pos_y][new_pos_x] == 'M')
+	{
+		ft_printf("OOPS! You touched an enemy patrol\n");
+		close_window(data);
+	}
 	data->moves++;
+	change_pos(data, new_pos_y, new_pos_x);
+}
+
+void	change_pos(t_game *data, int new_pos_y, int new_pos_x)
+{
 	data->map[data->player.pos_y][data->player.pos_x] = '0';
 	data->map[new_pos_y][new_pos_x] = 'P';
 	draw_image(data, data->img_floor, data->player.pos_y, data->player.pos_x);

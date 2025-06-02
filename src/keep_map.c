@@ -6,7 +6,7 @@
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 12:43:16 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/06/02 12:49:08 by mabaghda         ###   ########.fr       */
+/*   Updated: 2025/06/02 17:57:36 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ int	allocate_map(char *filename, t_game *data)
 
 void	flood_fill_coll(char **map, int x, int y, int *found_c)
 {
-	if (map[y][x] == '1' || map[y][x] == 'L' || map[y][x] == 'E')
+	if (map[y][x] == '1' || map[y][x] == 'L' || map[y][x] == 'E'
+		|| map[y][x] == 'M')
 		return ;
 	if (map[y][x] == 'C')
 		(*found_c)++;
@@ -69,7 +70,7 @@ void	flood_fill_coll(char **map, int x, int y, int *found_c)
 
 void	flood_fill_exit(char **map, int x, int y, int *exit)
 {
-	if (map[y][x] == '1' || map[y][x] == 'L')
+	if (map[y][x] == '1' || map[y][x] == 'L' || map[y][x] == 'M')
 		return ;
 	if (map[y][x] == 'E')
 	{

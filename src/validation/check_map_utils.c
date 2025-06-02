@@ -6,7 +6,7 @@
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 17:23:58 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/06/02 15:28:28 by mabaghda         ###   ########.fr       */
+/*   Updated: 2025/06/02 17:56:23 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	valid_characters(char *line)
 	while (line[i] && line[i] != '\n')
 	{
 		if (line[i] != '1' && line[i] != '0' && line[i] != 'P' && line[i] != 'C'
-			&& line[i] != 'E')
+			&& line[i] != 'E' && line[i] != 'M')
 			return (0);
 		i++;
 	}
