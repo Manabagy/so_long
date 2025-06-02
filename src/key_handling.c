@@ -6,7 +6,7 @@
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 19:27:59 by manana            #+#    #+#             */
-/*   Updated: 2025/06/02 12:29:54 by mabaghda         ###   ########.fr       */
+/*   Updated: 2025/06/02 13:00:45 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,12 @@ void	move_player(t_game *data, int move_y, int move_x)
 		return ;
 	if (data->map[new_pos_y][new_pos_x] == 'C')
 		data->collected++;
-	// if (data->map[new_pos_y][new_pos_x] == 'E')
-	// {
-	// 	if (data->collected != )
-	// }
+	if (data->map[new_pos_y][new_pos_x] == 'E')
+	{
+		if (data->collected != data->comps.coll_count)
+			return ;
+	}
+	data->moves++;
 	data->map[data->player.pos_y][data->player.pos_x] = '0';
 	data->map[new_pos_y][new_pos_x] = 'P';
 	data->player.pos_x = new_pos_x;

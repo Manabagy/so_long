@@ -6,7 +6,7 @@
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:07:17 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/06/02 12:28:30 by mabaghda         ###   ########.fr       */
+/*   Updated: 2025/06/02 12:57:43 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ void	init_game(t_game *data)
 	data->comps.player_count = 0;
 	data->comps.exit_count = 0;
 	data->comps.coll_count = 0;
+	data->collected = 0;
+	data->moves = 0;
 	data->height = 0;
 	data->width = 0;
 	data->player.pos_x = 0;
