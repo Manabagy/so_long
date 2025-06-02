@@ -6,7 +6,7 @@
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 15:10:06 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/06/01 17:43:11 by mabaghda         ###   ########.fr       */
+/*   Updated: 2025/06/02 11:55:22 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int	check_map(char *filename, t_comp *comp_list, t_game *data)
 	return (1);
 }
 
-int	check_path(t_game *data, t_player *player, t_comp *comp_list)
+int	check_path(t_game *data, t_comp *comp_list)
 {
 	char	**dup1;
 	char	**dup2;
@@ -98,14 +98,14 @@ int	check_path(t_game *data, t_player *player, t_comp *comp_list)
 
 	found_c = 0;
 	exit_reached = 0;
-	find_p_pos(data, player);
+	find_p_pos(data, &data->player);
 	dup1 = dup_map(data->map, data->height);
 	dup2 = dup_map(data->map, data->height);
-	flood_fill_coll(dup1, player->pos_x, player->pos_y, &found_c);
+	flood_fill_coll(dup1, data->player.pos_x, data->player.pos_y, &found_c);
 	if (found_c != comp_list->coll_count)
 		return (0);
 	// return (free_array(dup1), free_array(dup2), 0);
-	flood_fill_exit(dup2, player->pos_x, player->pos_y, &exit_reached);
+	flood_fill_exit(dup2, data->player.pos_x, data->player.pos_y, &exit_reached);
 	if (!exit_reached)
 		return (0);
 	// return (free_array(dup1), free_array(dup2), 0);
