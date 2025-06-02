@@ -6,7 +6,7 @@
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 19:27:59 by manana            #+#    #+#             */
-/*   Updated: 2025/06/02 13:00:45 by mabaghda         ###   ########.fr       */
+/*   Updated: 2025/06/02 13:54:38 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,9 @@ void	move_player(t_game *data, int move_y, int move_x)
 	}
 	data->moves++;
 	data->map[data->player.pos_y][data->player.pos_x] = '0';
+	draw_image(data, data->img_floor, data->player.pos_y, data->player.pos_x);
 	data->map[new_pos_y][new_pos_x] = 'P';
+	draw_image(data, data->img_player, new_pos_y, new_pos_x);
 	data->player.pos_x = new_pos_x;
 	data->player.pos_y = new_pos_y;
-	draw_map(data);
 }
