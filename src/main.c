@@ -6,11 +6,44 @@
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 19:19:28 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/06/02 15:34:18 by mabaghda         ###   ########.fr       */
+/*   Updated: 2025/06/06 15:14:13 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
+
+static void	animate_coin(t_game *data)
+{
+	(void)data;
+}
+
+int	render_next_frame(t_game *data)
+{
+	if (!data)
+		return (0);
+	data->counter++;
+	if (data->counter >= 400)
+	{
+		draw_map(data);
+		write_movements(data);
+		animate_coin(data);
+		data->counter = 0;
+	}
+	return (1);
+}
+
+void	start_game(t_game *data)
+{
+	data->mlx = mlx_init();
+	data->win = mlx_new_window(data->mlx, (data->width * SIZE), (data->height
+				* SIZE), "so_long");
+	init_images(data);
+	draw_map(data);
+	mlx_key_hook(data->win, key_handler, data);
+	mlx_hook(data->win, 17, 1L << 0, close_window, data);
+	mlx_loop_hook(data->mlx, render_next_frame, data);
+	mlx_loop(data->mlx);
+}
 
 int	main(int argc, char **argv)
 {

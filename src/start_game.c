@@ -6,40 +6,38 @@
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 12:18:51 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/06/02 19:28:11 by mabaghda         ###   ########.fr       */
+/*   Updated: 2025/06/06 15:07:30 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-void	init_images(t_game *data)
+static void	load_image(void *mlx, void **img, char *path)
 {
 	int	w;
 	int	h;
 
-	data->img_wall = mlx_xpm_file_to_image(data->mlx, "textures/100rock.xpm",
-			&w, &h);
-	data->img_floor = mlx_xpm_file_to_image(data->mlx, "textures/100space.xpm",
-			&w, &h);
-	data->img_collective = mlx_xpm_file_to_image(data->mlx,
-			"textures/100stone.xpm", &w, &h);
-	data->img_player = mlx_xpm_file_to_image(data->mlx, "textures/100loki.xpm",
-			&w, &h);
-	data->img_player_right = mlx_xpm_file_to_image(data->mlx,
-			"textures/100lokiright.xpm", &w, &h);
-	data->img_player_left = mlx_xpm_file_to_image(data->mlx,
-			"textures/100lokileft.xpm", &w, &h);
-	data->img_exit = mlx_xpm_file_to_image(data->mlx, "textures/100asgard.xpm",
-			&w, &h);
-	data->img_enemy = mlx_xpm_file_to_image(data->mlx, "textures/100thanos.xpm",
-			&w, &h);
+	*img = mlx_xpm_file_to_image(mlx, path, &w, &h);
+}
+
+void	init_images(t_game *data)
+{
+	load_image(data->mlx, &data->img_wall, "textures/100rock.xpm");
+	load_image(data->mlx, &data->img_floor, "textures/100space.xpm");
+	load_image(data->mlx, &data->img_collective, "textures/100stone.xpm");
+	load_image(data->mlx, &data->img_player, "textures/100loki.xpm");
+	load_image(data->mlx, &data->img_player_right, "textures/100lokiright.xpm");
+	load_image(data->mlx, &data->img_player_left, "textures/100lokileft.xpm");
+	load_image(data->mlx, &data->img_exit, "textures/100asgard.xpm");
+	load_image(data->mlx, &data->img_enemy, "textures/100thanos.xpm");
 	if (!data->img_wall || !data->img_floor || !data->img_collective
-		|| !data->img_player_right || !data->img_player_left || !data->img_exit
-		|| !data->img_enemy || !data->img_player)
+		|| !data->img_player || !data->img_player_right
+		|| !data->img_player_left || !data->img_exit || !data->img_enemy)
 	{
 		ft_printf("Error: Failed to load one or more textures\n");
 		exit(1);
 	}
+	data->player_main_img = data->img_player;
 }
 
 void	draw_image(t_game *data, void *img, int i, int j)
@@ -62,7 +60,7 @@ void	draw_map(t_game *data)
 			if (data->map[i][j] == '1')
 				draw_image(data, data->img_wall, i, j);
 			else if (data->map[i][j] == 'P')
-				draw_image(data, data->img_player, i, j);
+				draw_image(data, data->player_main_img, i, j);
 			else if (data->map[i][j] == 'C')
 				draw_image(data, data->img_collective, i, j);
 			else if (data->map[i][j] == 'E')
@@ -75,14 +73,12 @@ void	draw_map(t_game *data)
 	}
 }
 
-void	start_game(t_game *data)
+void	write_movements(t_game *data)
 {
-	data->mlx = mlx_init();
-	data->win = mlx_new_window(data->mlx, (data->width * SIZE), (data->height
-				* SIZE), "so_long");
-	init_images(data);
-	draw_map(data);
-	mlx_key_hook(data->win, key_handler, data);
-	mlx_hook(data->win, 17, 0, close_window, data);
-	mlx_loop(data->mlx);
+	char	*s;
+
+	s = ft_itoa(data->moves);
+	mlx_string_put(data->mlx, data->win, 10, 10, 0xFFFFFF, "Movements:");
+	mlx_string_put(data->mlx, data->win, 75, 10, 0xFFFFFF, s);
+	free(s);
 }

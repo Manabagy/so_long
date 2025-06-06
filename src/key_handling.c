@@ -6,7 +6,7 @@
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 19:27:59 by manana            #+#    #+#             */
-/*   Updated: 2025/06/02 19:24:34 by mabaghda         ###   ########.fr       */
+/*   Updated: 2025/06/06 15:11:18 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,20 +46,35 @@ int	key_handler(int keycode, t_game *data)
 	if (keycode == KEY_ESC)
 		return (close_window(data));
 	if (keycode == KEY_W)
+	{
 		move_player(data, -1, 0);
+		data->player_main_img = data->img_player;
+	}
 	else if (keycode == KEY_S)
+	{
 		move_player(data, 1, 0);
+		data->player_main_img = data->img_player;
+	}
 	else if (keycode == KEY_A)
 	{
-		data->key_pressed = 1;
 		move_player(data, 0, -1);
+		data->player_main_img = data->img_player_left;
 	}
 	else if (keycode == KEY_D)
 	{
-		data->key_pressed = 2;
 		move_player(data, 0, 1);
+		data->player_main_img = data->img_player_right;
 	}
 	return (0);
+}
+
+static void	check_win(t_game *data)
+{
+	if (data->collected == data->comps.coll_count)
+	{
+		ft_printf("You won in %d moves!\n", data->moves + 1);
+		close_window(data);
+	}
 }
 
 void	move_player(t_game *data, int move_y, int move_x)
@@ -75,11 +90,7 @@ void	move_player(t_game *data, int move_y, int move_x)
 		data->collected++;
 	if (data->map[new_pos_y][new_pos_x] == 'E')
 	{
-		if (data->collected == data->comps.coll_count)
-		{
-			ft_printf("You won in %d moves!\n", data->moves + 1);
-			close_window(data);
-		}
+		check_win(data);
 		return ;
 	}
 	if (data->map[new_pos_y][new_pos_x] == 'M')
@@ -95,13 +106,7 @@ void	change_pos(t_game *data, int new_pos_y, int new_pos_x)
 {
 	data->map[data->player.pos_y][data->player.pos_x] = '0';
 	data->map[new_pos_y][new_pos_x] = 'P';
-	draw_image(data, data->img_floor, data->player.pos_y, data->player.pos_x);
-	if (data->key_pressed == 1)
-		draw_image(data, data->img_player_left, new_pos_y, new_pos_x);
-	else if (data->key_pressed == 2)
-		draw_image(data, data->img_player_right, new_pos_y, new_pos_x);
-	else
-		draw_image(data, data->img_player, new_pos_y, new_pos_x);
 	data->player.pos_x = new_pos_x;
 	data->player.pos_y = new_pos_y;
+	draw_map(data);
 }

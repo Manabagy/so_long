@@ -6,7 +6,7 @@
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 19:17:11 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/06/02 19:20:21 by mabaghda         ###   ########.fr       */
+/*   Updated: 2025/06/06 15:09:33 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct s_game
 	void		*win;
 	void		*img_wall;
 	void		*img_enemy;
+	void		*player_main_img;
 	void		*img_player;
 	void		*img_player_right;
 	void		*img_player_left;
@@ -55,11 +56,11 @@ typedef struct s_game
 	void		*img_collective;
 	int			width;
 	int			height;
-	int			key_pressed;
 	t_player	player;
 	t_comp		comps;
 	int			collected;
 	int			moves;
+	int			counter;
 }				t_game;
 
 int				isvalid_map(int fd, t_comp *comp_list, t_game *data);
@@ -89,5 +90,6 @@ int				close_window(t_game *data);
 int				key_handler(int keycode, t_game *data);
 void			move_player(t_game *data, int move_y, int move_x);
 void			change_pos(t_game *data, int new_pos_y, int new_pos_x);
+void			write_movements(t_game *data);
 
 #endif
