@@ -6,11 +6,30 @@
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 15:10:06 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/06/07 13:23:56 by mabaghda         ###   ########.fr       */
+/*   Updated: 2025/06/07 18:43:10 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/so_long.h"
+
+void	count_components(char *line, t_comp *comp_list)
+{
+	int	i;
+
+	i = 0;
+	if (!line || !comp_list)
+		return ;
+	while (line[i])
+	{
+		if (line[i] == 'P')
+			comp_list->player_count++;
+		if (line[i] == 'E')
+			comp_list->exit_count++;
+		if (line[i] == 'C')
+			comp_list->coll_count++;
+		i++;
+	}
+}
 
 int	first_and_last_wall(int fd)
 {
@@ -70,8 +89,8 @@ int	check_map(char *filename, t_game *data)
 	int	len;
 
 	len = ft_strlen(filename);
-	if (!(filename[len - 1] == 'r' && filename[len - 2] == 'e' && filename[len
-			- 3] == 'b' && filename[len - 4] == '.'))
+	if (!(filename[len - 1] == 'r' && filename[len - 2] == 'e'
+			&& filename[len - 3] == 'b' && filename[len - 4] == '.'))
 		return (0);
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
@@ -104,13 +123,11 @@ int	check_path(t_game *data)
 	flood_fill_coll(dup1, data->player.pos_x, data->player.pos_y, &found_c);
 	if (found_c != data->comps.coll_count)
 		return (free_array(dup1), free_array(dup2), 0);
-	// return (0);
 	flood_fill_exit(dup2, data->player.pos_x, data->player.pos_y,
 		&exit_reached);
 	if (!exit_reached)
 		return (free_array(dup1), free_array(dup2), 0);
-	// return (0);
-	// free_array(dup1);
-	// free_array(dup2);
+	free_array(dup1);
+	free_array(dup2);
 	return (1);
 }

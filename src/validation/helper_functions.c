@@ -6,30 +6,11 @@
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:07:17 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/06/07 16:45:07 by mabaghda         ###   ########.fr       */
+/*   Updated: 2025/06/07 18:42:47 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/so_long.h"
-
-void	count_components(char *line, t_comp *comp_list)
-{
-	int	i;
-
-	i = 0;
-	if (!line || !comp_list)
-		return ;
-	while (line[i])
-	{
-		if (line[i] == 'P')
-			comp_list->player_count++;
-		if (line[i] == 'E')
-			comp_list->exit_count++;
-		if (line[i] == 'C')
-			comp_list->coll_count++;
-		i++;
-	}
-}
 
 int	check_line(char *line, t_comp *comp_list)
 {
@@ -58,22 +39,28 @@ int	check_comp_count(t_comp *comp_list)
 	return (1);
 }
 
-void	init_game(t_game *data)
+static void	init_comps(t_game *data)
 {
+	data->player.pos_x = 0;
+	data->player.pos_y = 0;
 	data->comps.player_count = 0;
 	data->comps.exit_count = 0;
 	data->comps.coll_count = 0;
+}
+
+void	init_game(t_game *data)
+{
+	init_comps(data);
 	data->collected = 0;
 	data->moves = 0;
 	data->height = 0;
 	data->width = 0;
-	data->player.pos_x = 0;
-	data->player.pos_y = 0;
 	data->map = NULL;
 	data->mlx = NULL;
 	data->win = NULL;
 	data->index = 0;
 	data->img_main_collective = NULL;
+	data->player_main_img = NULL;
 	data->img_collective[0] = NULL;
 	data->img_collective[1] = NULL;
 	data->img_collective[2] = NULL;
