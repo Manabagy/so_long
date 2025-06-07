@@ -6,7 +6,7 @@
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 19:19:28 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/06/06 15:14:13 by mabaghda         ###   ########.fr       */
+/*   Updated: 2025/06/07 17:53:53 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,11 @@
 
 static void	animate_coin(t_game *data)
 {
-	(void)data;
+	if (data->index == 4)
+		data->index = 0;
+	else
+		data->index++;
+	data->img_main_collective = data->img_collective[data->index];
 }
 
 int	render_next_frame(t_game *data)
@@ -22,7 +26,7 @@ int	render_next_frame(t_game *data)
 	if (!data)
 		return (0);
 	data->counter++;
-	if (data->counter >= 400)
+	if (data->counter >= 5000)
 	{
 		draw_map(data);
 		write_movements(data);

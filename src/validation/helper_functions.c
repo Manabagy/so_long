@@ -6,7 +6,7 @@
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:07:17 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/06/06 15:09:43 by mabaghda         ###   ########.fr       */
+/*   Updated: 2025/06/07 16:45:07 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,13 @@ void	init_game(t_game *data)
 	data->map = NULL;
 	data->mlx = NULL;
 	data->win = NULL;
-	data->img_collective = NULL;
+	data->index = 0;
+	data->img_main_collective = NULL;
+	data->img_collective[0] = NULL;
+	data->img_collective[1] = NULL;
+	data->img_collective[2] = NULL;
+	data->img_collective[3] = NULL;
+	data->img_collective[4] = NULL;
 	data->img_wall = NULL;
 	data->img_player = NULL;
 	data->img_player_right = NULL;

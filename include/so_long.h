@@ -6,7 +6,7 @@
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 19:17:11 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/06/06 15:09:33 by mabaghda         ###   ########.fr       */
+/*   Updated: 2025/06/07 16:44:41 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,9 @@ typedef struct s_game
 	void		*img_player_left;
 	void		*img_floor;
 	void		*img_exit;
-	void		*img_collective;
+	void		*img_collective[5];
+	void		*img_main_collective;
+	int			index;
 	int			width;
 	int			height;
 	t_player	player;

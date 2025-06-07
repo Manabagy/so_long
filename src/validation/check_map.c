@@ -6,7 +6,7 @@
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 15:10:06 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/06/06 15:21:41 by mabaghda         ###   ########.fr       */
+/*   Updated: 2025/06/07 13:23:56 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ int	check_map(char *filename, t_game *data)
 	int	len;
 
 	len = ft_strlen(filename);
-	if (!(filename[len - 1] == 'r' && filename[len - 2] == 'e'
-			&& filename[len - 3] == 'b' && filename[len - 4] == '.'))
+	if (!(filename[len - 1] == 'r' && filename[len - 2] == 'e' && filename[len
+			- 3] == 'b' && filename[len - 4] == '.'))
 		return (0);
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
@@ -103,14 +103,14 @@ int	check_path(t_game *data)
 	dup2 = dup_map(data->map, data->height);
 	flood_fill_coll(dup1, data->player.pos_x, data->player.pos_y, &found_c);
 	if (found_c != data->comps.coll_count)
-		return (0);
-	return (free_array(dup1), free_array(dup2), 0);
+		return (free_array(dup1), free_array(dup2), 0);
+	// return (0);
 	flood_fill_exit(dup2, data->player.pos_x, data->player.pos_y,
 		&exit_reached);
 	if (!exit_reached)
-		return (0);
-	return (free_array(dup1), free_array(dup2), 0);
-	free_array(dup1);
-	free_array(dup2);
+		return (free_array(dup1), free_array(dup2), 0);
+	// return (0);
+	// free_array(dup1);
+	// free_array(dup2);
 	return (1);
 }

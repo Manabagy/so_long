@@ -6,11 +6,24 @@
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 19:27:59 by manana            #+#    #+#             */
-/*   Updated: 2025/06/06 15:11:18 by mabaghda         ###   ########.fr       */
+/*   Updated: 2025/06/07 18:19:39 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
+
+static void	destroy_collective(t_game *data)
+{
+	int	i;
+
+	i = 0;
+	while (i < 5)
+	{
+		if (data->img_collective[i])
+			mlx_destroy_image(data->mlx, data->img_collective[i]);
+		i++;
+	}
+}
 
 int	close_window(t_game *data)
 {
@@ -18,8 +31,6 @@ int	close_window(t_game *data)
 		mlx_destroy_image(data->mlx, data->img_wall);
 	if (data->img_floor)
 		mlx_destroy_image(data->mlx, data->img_floor);
-	if (data->img_collective)
-		mlx_destroy_image(data->mlx, data->img_collective);
 	if (data->img_player)
 		mlx_destroy_image(data->mlx, data->img_player);
 	if (data->img_player_right)
@@ -32,6 +43,7 @@ int	close_window(t_game *data)
 		mlx_destroy_image(data->mlx, data->img_enemy);
 	if (data->win)
 		mlx_destroy_window(data->mlx, data->win);
+	destroy_collective(data);
 	if (data->mlx)
 	{
 		mlx_destroy_display(data->mlx);
@@ -65,6 +77,7 @@ int	key_handler(int keycode, t_game *data)
 		move_player(data, 0, 1);
 		data->player_main_img = data->img_player_right;
 	}
+	write_movements(data);
 	return (0);
 }
 
