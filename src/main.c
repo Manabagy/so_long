@@ -6,7 +6,7 @@
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 19:19:28 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/06/07 17:53:53 by mabaghda         ###   ########.fr       */
+/*   Updated: 2025/06/11 15:49:24 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	render_next_frame(t_game *data)
 	if (!data)
 		return (0);
 	data->counter++;
-	if (data->counter >= 5000)
+	if (data->counter >= 6000)
 	{
 		draw_map(data);
 		write_movements(data);
@@ -54,16 +54,12 @@ int	main(int argc, char **argv)
 	t_game	data;
 
 	if (argc != 2)
-	{
 		return (ft_printf("Error\nGive me a map!\n"), 1);
-	}
 	init_game(&data);
 	if (!check_map(argv[1], &data))
-	{
 		return (ft_printf("Error\nInvalid map!\n"), 1);
-	}
 	if (!check_path(&data))
-		return (ft_printf("Error\nInvalid Path\n"), 1);
+		return (ft_printf("Error\nInvalid Path\n"), free_array(data.map), 1);
 	start_game(&data);
 	return (0);
 }

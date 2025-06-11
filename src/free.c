@@ -6,7 +6,7 @@
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 18:45:04 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/06/07 18:47:02 by mabaghda         ###   ########.fr       */
+/*   Updated: 2025/06/11 14:46:32 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	*free_array(char **array)
 	int	i;
 
 	i = 0;
+	if (!array)
+		return (NULL);
 	while (array[i])
 	{
 		free(array[i]);

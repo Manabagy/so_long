@@ -6,7 +6,7 @@
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 15:10:06 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/06/07 18:43:10 by mabaghda         ###   ########.fr       */
+/*   Updated: 2025/06/11 16:30:22 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,16 +48,15 @@ int	first_and_last_wall(int fd)
 			free(last_line);
 		last_line = ft_strdup(line);
 		if (!valid_characters(line))
-			return (free(line), free(first_line), free(last_line), 0);
+			return (free(line), free(first_line), get_next_line(-1),
+				free(last_line), 0);
 		free(line);
 		line = get_next_line(fd);
 	}
 	close(fd);
 	if (!firstnlast(first_line) || !firstnlast(last_line))
-		return (free(first_line), free(last_line), 0);
-	free(first_line);
-	free(last_line);
-	return (1);
+		return (free(line), free(first_line), free(last_line), 0);
+	return (free(line), free(first_line), free(last_line), 1);
 }
 
 int	isvalid_map(int fd, t_comp *comp_list, t_game *data)
@@ -72,7 +71,7 @@ int	isvalid_map(int fd, t_comp *comp_list, t_game *data)
 	{
 		data->height++;
 		if (data->width != width(line) || (!check_line(line, comp_list)))
-			return (free(line), 0);
+			return (free(line), get_next_line(-1), 0);
 		free(line);
 		line = get_next_line(fd);
 	}

@@ -6,7 +6,7 @@
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 12:43:16 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/06/02 17:57:36 by mabaghda         ###   ########.fr       */
+/*   Updated: 2025/06/11 15:44:03 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,15 @@
 
 int	fill_map(char *line, t_game *data, int times)
 {
+	if (!line)
+	{
+		free_array(data->map);
+		return (0);
+	}
 	if (line[ft_strlen(line) - 1] == '\n')
 		line[ft_strlen(line) - 1] = '\0';
 	data->map[times] = ft_strdup(line);
-	if (!data->map[times])
+	if (!(data->map[times]))
 	{
 		free_array(data->map);
 		return (0);
@@ -43,15 +48,15 @@ int	allocate_map(char *filename, t_game *data)
 		return (0);
 	while (line != NULL)
 	{
-		fill_map(line, data, times);
+		if (!fill_map(line, data, times))
+			return (0);
 		free(line);
 		line = get_next_line(fd);
 		times++;
 	}
 	data->map[times] = NULL;
-	free(line);
 	close(fd);
-	return (1);
+	return (free(line), 1);
 }
 
 void	flood_fill_coll(char **map, int x, int y, int *found_c)
