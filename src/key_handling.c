@@ -6,7 +6,7 @@
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 19:27:59 by manana            #+#    #+#             */
-/*   Updated: 2025/06/11 15:56:40 by mabaghda         ###   ########.fr       */
+/*   Updated: 2025/06/11 16:43:36 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,22 @@ int	key_handler(int keycode, t_game *data)
 {
 	if (keycode == KEY_ESC)
 		return (close_window(data));
-	if (keycode == KEY_W)
+	if (keycode == KEY_W || keycode == KEY_UP)
 	{
 		move_player(data, -1, 0);
 		data->player_main_img = data->img_player;
 	}
-	else if (keycode == KEY_S)
+	else if (keycode == KEY_S || keycode == KEY_DOWN)
 	{
 		move_player(data, 1, 0);
 		data->player_main_img = data->img_player;
 	}
-	else if (keycode == KEY_A)
+	else if (keycode == KEY_A || keycode == KEY_LEFT)
 	{
 		move_player(data, 0, -1);
 		data->player_main_img = data->img_player_left;
 	}
-	else if (keycode == KEY_D)
+	else if (keycode == KEY_D || keycode == KEY_RIGHT)
 	{
 		move_player(data, 0, 1);
 		data->player_main_img = data->img_player_right;
