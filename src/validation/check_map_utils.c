@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: manana <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 17:23:58 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/06/07 18:46:40 by mabaghda         ###   ########.fr       */
+/*   Updated: 2025/06/13 21:39:01 by manana           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,23 @@ int	valid_characters(char *line)
 	{
 		if (line[i] != '1' && line[i] != '0' && line[i] != 'P' && line[i] != 'C'
 			&& line[i] != 'E' && line[i] != 'M')
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+int	is_empty_or_spaces(char *line)
+{
+	int	i;
+
+	i = 0;
+	if (!line)
+		return (1);
+	while (line[i])
+	{
+		if (line[i] != ' ' && line[i] != '\t' && line[i] != '\n'
+			&& !(line[i] >= 9 && line[i] <= 13))
 			return (0);
 		i++;
 	}

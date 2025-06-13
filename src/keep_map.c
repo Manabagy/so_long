@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   keep_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: manana <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 12:43:16 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/06/11 15:44:03 by mabaghda         ###   ########.fr       */
+/*   Updated: 2025/06/13 21:10:23 by manana           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-int	fill_map(char *line, t_game *data, int times)
+int	fill_map(char *line, t_game *data)
 {
 	if (!line)
 	{
@@ -21,8 +21,8 @@ int	fill_map(char *line, t_game *data, int times)
 	}
 	if (line[ft_strlen(line) - 1] == '\n')
 		line[ft_strlen(line) - 1] = '\0';
-	data->map[times] = ft_strdup(line);
-	if (!(data->map[times]))
+	data->map[data->check_map.times] = ft_strdup(line);
+	if (!(data->map[data->check_map.times]))
 	{
 		free_array(data->map);
 		return (0);
@@ -34,9 +34,7 @@ int	allocate_map(char *filename, t_game *data)
 {
 	char	*line;
 	int		fd;
-	int		times;
 
-	times = 0;
 	fd = open(filename, O_RDONLY);
 	if (!fd)
 		return (0);
@@ -48,15 +46,17 @@ int	allocate_map(char *filename, t_game *data)
 		return (0);
 	while (line != NULL)
 	{
-		if (!fill_map(line, data, times))
-			return (0);
+		if (!is_empty_or_spaces(line))
+		{
+			if (!fill_map(line, data))
+				return (0);
+			data->check_map.times++;
+		}
 		free(line);
 		line = get_next_line(fd);
-		times++;
 	}
-	data->map[times] = NULL;
-	close(fd);
-	return (free(line), 1);
+	data->map[data->check_map.times] = NULL;
+	return (close(fd), free(line), 1);
 }
 
 void	flood_fill_coll(char **map, int x, int y, int *found_c)

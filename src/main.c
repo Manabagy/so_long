@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: manana <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 19:19:28 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/06/11 16:35:35 by mabaghda         ###   ########.fr       */
+/*   Updated: 2025/06/13 21:40:52 by manana           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,25 @@ int	render_next_frame(t_game *data)
 		data->counter = 0;
 	}
 	return (1);
+}
+
+void	count_components(char *line, t_comp *comp_list)
+{
+	int	i;
+
+	i = 0;
+	if (!line || !comp_list)
+		return ;
+	while (line[i])
+	{
+		if (line[i] == 'P')
+			comp_list->player_count++;
+		if (line[i] == 'E')
+			comp_list->exit_count++;
+		if (line[i] == 'C')
+			comp_list->coll_count++;
+		i++;
+	}
 }
 
 void	start_game(t_game *data)

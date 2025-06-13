@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: manana <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 19:17:11 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/06/11 16:41:14 by mabaghda         ###   ########.fr       */
+/*   Updated: 2025/06/13 20:25:19 by manana           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,13 @@
 # define KEY_DOWN 65364
 # define KEY_LEFT 65361
 # define KEY_RIGHT 65363
+
+typedef struct s_map
+{
+	int			in_map;
+	int			map_ended;
+	int			times;
+}				t_map;
 
 typedef struct s_player
 {
@@ -64,6 +71,7 @@ typedef struct s_game
 	int			height;
 	t_player	player;
 	t_comp		comps;
+	t_map		check_map;
 	int			collected;
 	int			moves;
 	int			counter;
@@ -82,7 +90,7 @@ int				check_map(char *filename, t_game *data);
 void			init_game(t_game *data);
 int				allocate_map(char *filename, t_game *data);
 void			*free_array(char **array);
-int				fill_map(char *line, t_game *data, int times);
+int				fill_map(char *line, t_game *data);
 void			find_p_pos(t_game *data);
 char			**dup_map(char **map, int size);
 int				check_path(t_game *data);
@@ -97,5 +105,7 @@ int				key_handler(int keycode, t_game *data);
 void			move_player(t_game *data, int move_y, int move_x);
 void			change_pos(t_game *data, int new_pos_y, int new_pos_x);
 void			write_movements(t_game *data);
+int				check_empty_lines(int fd, t_game *data);
+int				is_empty_or_spaces(char *line);
 
 #endif

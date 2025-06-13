@@ -4,7 +4,7 @@ PRINTF = $(PRINTF_DIR)/libftprintf.a
 MLX = -Lmlx_Linux -lmlx_Linux -L ./minilibx-linux -Imlx_Linux -lXext -lX11 -lm -lz
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g3
+CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
 
 SRC = src/main.c src/gnl.c src/gnl_utils.c src/validation/check_map.c src/validation/check_map_utils.c src/validation/helper_functions.c src/keep_map.c src/start_game.c src/key_handling.c src/free.c
 OBJ = $(SRC:.c=.o)

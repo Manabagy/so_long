@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   helper_functions.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: manana <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 20:07:17 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/06/07 18:42:47 by mabaghda         ###   ########.fr       */
+/*   Updated: 2025/06/13 19:38:17 by manana           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,26 +39,13 @@ int	check_comp_count(t_comp *comp_list)
 	return (1);
 }
 
-static void	init_comps(t_game *data)
+static void	init_comps_and_images(t_game *data)
 {
 	data->player.pos_x = 0;
 	data->player.pos_y = 0;
 	data->comps.player_count = 0;
 	data->comps.exit_count = 0;
 	data->comps.coll_count = 0;
-}
-
-void	init_game(t_game *data)
-{
-	init_comps(data);
-	data->collected = 0;
-	data->moves = 0;
-	data->height = 0;
-	data->width = 0;
-	data->map = NULL;
-	data->mlx = NULL;
-	data->win = NULL;
-	data->index = 0;
 	data->img_main_collective = NULL;
 	data->player_main_img = NULL;
 	data->img_collective[0] = NULL;
@@ -73,5 +60,21 @@ void	init_game(t_game *data)
 	data->img_floor = NULL;
 	data->img_exit = NULL;
 	data->img_enemy = NULL;
+}
+
+void	init_game(t_game *data)
+{
+	init_comps_and_images(data);
+	data->collected = 0;
+	data->moves = 0;
+	data->height = 0;
+	data->width = 0;
+	data->map = NULL;
+	data->mlx = NULL;
+	data->win = NULL;
+	data->index = 0;
 	data->counter = 0;
+	data->check_map.in_map = 0;
+	data->check_map.map_ended = 0;
+	data->check_map.times = 0;
 }
