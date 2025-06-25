@@ -1,16 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 19:19:28 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/06/25 11:42:44 by mabaghda         ###   ########.fr       */
+/*   Updated: 2025/06/25 12:30:45 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
+
+static void	animate_coin(t_game *data)
+{
+	if (data->index == 4)
+		data->index = 0;
+	else
+		data->index++;
+	data->img_main_collective = data->img_collective[data->index];
+}
+
+int	render_next_frame(t_game *data)
+{
+	if (!data)
+		return (0);
+	data->counter++;
+	if (data->counter >= 6000)
+	{
+		draw_map_bonus(data);
+		write_movements(data);
+		animate_coin(data);
+		data->counter = 0;
+	}
+	return (1);
+}
 
 void	count_components(char *line, t_comp *comp_list)
 {
@@ -38,8 +62,9 @@ void	start_game(t_game *data)
 				* SIZE), "so_long");
 	init_images(data);
 	draw_map(data);
-	mlx_key_hook(data->win, key_handler, data);
+	mlx_key_hook(data->win, key_handler_bonus, data);
 	mlx_hook(data->win, 17, 1L << 0, close_window, data);
+	mlx_loop_hook(data->mlx, render_next_frame, data);
 	mlx_loop(data->mlx);
 }
 
@@ -50,7 +75,7 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		return (ft_printf("Error\nGive me a map!\n"), 1);
 	init_game(&data);
-	if (!check_map(argv[1], &data))
+	if (!check_map_bonus(argv[1], &data))
 		return (ft_printf("Error\nInvalid map!\n"), 1);
 	if (!check_path(&data))
 		return (ft_printf("Error\nInvalid Path\n"), free_array(data.map), 1);

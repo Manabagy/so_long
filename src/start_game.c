@@ -6,7 +6,7 @@
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 12:18:51 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/06/11 16:30:38 by mabaghda         ###   ########.fr       */
+/*   Updated: 2025/06/25 12:05:35 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,6 @@ void	draw_map(t_game *data)
 				draw_image(data, data->img_main_collective, i, j);
 			else if (data->map[i][j] == 'E')
 				draw_image(data, data->img_exit, i, j);
-			else if (data->map[i][j] == 'M')
-				draw_image(data, data->img_enemy, i, j);
 			j++;
 		}
 		i++;
