@@ -6,7 +6,7 @@
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 11:32:18 by mabaghda          #+#    #+#             */
-/*   Updated: 2025/06/25 12:10:36 by mabaghda         ###   ########.fr       */
+/*   Updated: 2025/06/25 13:00:01 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int	valid_characters_bonus(char *line)
 	}
 	return (1);
 }
+
 void	flood_fill_coll_bonus(char **map, int x, int y, int *found_c)
 {
 	if (map[y][x] == '1' || map[y][x] == 'L' || map[y][x] == 'E'
@@ -55,6 +56,7 @@ void	flood_fill_exit_bonus(char **map, int x, int y, int *exit)
 	flood_fill_exit(map, x, y + 1, exit);
 	flood_fill_exit(map, x, y - 1, exit);
 }
+
 int	first_and_last_wall_bonus(int fd)
 {
 	char	*line;
@@ -86,12 +88,12 @@ int	first_and_last_wall_bonus(int fd)
 
 int	check_map_bonus(char *filename, t_game *data)
 {
-	int fd;
-	int len;
+	int	fd;
+	int	len;
 
 	len = ft_strlen(filename);
-	if (!(filename[len - 1] == 'r' && filename[len - 2] == 'e' && filename[len
-			- 3] == 'b' && filename[len - 4] == '.'))
+	if (!(filename[len - 1] == 'r' && filename[len - 2] == 'e'
+			&& filename[len - 3] == 'b' && filename[len - 4] == '.'))
 		return (0);
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)

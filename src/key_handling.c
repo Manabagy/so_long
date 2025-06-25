@@ -6,7 +6,7 @@
 /*   By: mabaghda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 19:27:59 by manana            #+#    #+#             */
-/*   Updated: 2025/06/25 12:53:43 by mabaghda         ###   ########.fr       */
+/*   Updated: 2025/06/25 12:58:45 by mabaghda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,6 @@ void	move_player(t_game *data, int move_y, int move_x)
 	data->moves++;
 	change_pos(data, new_pos_y, new_pos_x);
 }
-
-
 
 void	change_pos(t_game *data, int new_pos_y, int new_pos_x)
 {
